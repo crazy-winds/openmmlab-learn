@@ -1,2265 +1,0 @@
-anaconda/2021.05(14):ERROR:150: Module 'anaconda/2021.05' conflicts with the currently loaded module(s) 'anaconda/2022.10'
-anaconda/2021.05(14):ERROR:102: Tcl command execution failed: conflict anaconda
-
-/HOME/scz0bdh/.conda/envs/mmlab/lib/python3.9/site-packages/mmcv/__init__.py:20: UserWarning: On January 1, 2023, MMCV will release v2.0.0, in which it will remove components related to the training process and add a data transformation module. In addition, it will rename the package names mmcv to mmcv-lite and mmcv-full to mmcv. See https://github.com/open-mmlab/mmcv/blob/master/docs/en/compatibility.md for more details.
-  warnings.warn(
-/data/run01/scz0bdh/mmlab_hub/mmdetection-master/mmdet/utils/setup_env.py:38: UserWarning: Setting OMP_NUM_THREADS environment variable for each process to be 1 in default, to avoid your system being overloaded, please further tune the variable for optimal performance in your application as needed.
-  warnings.warn(
-/data/run01/scz0bdh/mmlab_hub/mmdetection-master/mmdet/utils/setup_env.py:48: UserWarning: Setting MKL_NUM_THREADS environment variable for each process to be 1 in default, to avoid your system being overloaded, please further tune the variable for optimal performance in your application as needed.
-  warnings.warn(
-fatal: Not a git repository (or any parent up to mount point /data)
-Stopping at filesystem boundary (GIT_DISCOVERY_ACROSS_FILESYSTEM not set).
-2023-02-09 14:52:08,814 - mmdet - INFO - Environment info:
-------------------------------------------------------------
-sys.platform: linux
-Python: 3.9.16 (main, Jan 11 2023, 16:05:54) [GCC 11.2.0]
-CUDA available: True
-GPU 0: NVIDIA GeForce RTX 3090
-CUDA_HOME: /data/apps/cuda/11.1
-NVCC: Cuda compilation tools, release 11.1, V11.1.74
-GCC: gcc (GCC) 7.3.0
-PyTorch: 1.13.1
-PyTorch compiling details: PyTorch built with:
-  - GCC 9.3
-  - C++ Version: 201402
-  - Intel(R) oneAPI Math Kernel Library Version 2021.4-Product Build 20210904 for Intel(R) 64 architecture applications
-  - Intel(R) MKL-DNN v2.6.0 (Git Hash 52b5f107dd9cf10910aaa19cb47f3abf9b349815)
-  - OpenMP 201511 (a.k.a. OpenMP 4.5)
-  - LAPACK is enabled (usually provided by MKL)
-  - NNPACK is enabled
-  - CPU capability usage: AVX2
-  - CUDA Runtime 11.7
-  - NVCC architecture flags: -gencode;arch=compute_37,code=sm_37;-gencode;arch=compute_50,code=sm_50;-gencode;arch=compute_60,code=sm_60;-gencode;arch=compute_61,code=sm_61;-gencode;arch=compute_70,code=sm_70;-gencode;arch=compute_75,code=sm_75;-gencode;arch=compute_80,code=sm_80;-gencode;arch=compute_86,code=sm_86;-gencode;arch=compute_37,code=compute_37
-  - CuDNN 8.5
-  - Magma 2.6.1
-  - Build settings: BLAS_INFO=mkl, BUILD_TYPE=Release, CUDA_VERSION=11.7, CUDNN_VERSION=8.5.0, CXX_COMPILER=/opt/rh/devtoolset-9/root/usr/bin/c++, CXX_FLAGS= -fabi-version=11 -Wno-deprecated -fvisibility-inlines-hidden -DUSE_PTHREADPOOL -fopenmp -DNDEBUG -DUSE_KINETO -DUSE_FBGEMM -DUSE_QNNPACK -DUSE_PYTORCH_QNNPACK -DUSE_XNNPACK -DSYMBOLICATE_MOBILE_DEBUG_HANDLE -DEDGE_PROFILER_USE_KINETO -O2 -fPIC -Wno-narrowing -Wall -Wextra -Werror=return-type -Werror=non-virtual-dtor -Wno-missing-field-initializers -Wno-type-limits -Wno-array-bounds -Wno-unknown-pragmas -Wunused-local-typedefs -Wno-unused-parameter -Wno-unused-function -Wno-unused-result -Wno-strict-overflow -Wno-strict-aliasing -Wno-error=deprecated-declarations -Wno-stringop-overflow -Wno-psabi -Wno-error=pedantic -Wno-error=redundant-decls -Wno-error=old-style-cast -fdiagnostics-color=always -faligned-new -Wno-unused-but-set-variable -Wno-maybe-uninitialized -fno-math-errno -fno-trapping-math -Werror=format -Werror=cast-function-type -Wno-stringop-overflow, LAPACK_INFO=mkl, PERF_WITH_AVX=1, PERF_WITH_AVX2=1, PERF_WITH_AVX512=1, TORCH_VERSION=1.13.1, USE_CUDA=ON, USE_CUDNN=ON, USE_EXCEPTION_PTR=1, USE_GFLAGS=OFF, USE_GLOG=OFF, USE_MKL=ON, USE_MKLDNN=ON, USE_MPI=OFF, USE_NCCL=ON, USE_NNPACK=ON, USE_OPENMP=ON, USE_ROCM=OFF, 
-
-TorchVision: 0.14.1
-OpenCV: 4.7.0
-MMCV: 1.7.1
-MMCV Compiler: GCC 9.3
-MMCV CUDA Compiler: 11.7
-MMDetection: 2.28.1+
-------------------------------------------------------------
-
-2023-02-09 14:52:09,466 - mmdet - INFO - Distributed training: False
-2023-02-09 14:52:10,035 - mmdet - INFO - Config:
-model = dict(
-    type='MaskRCNN',
-    backbone=dict(
-        type='ResNet',
-        depth=50,
-        num_stages=4,
-        out_indices=(0, 1, 2, 3),
-        frozen_stages=1,
-        norm_cfg=dict(type='BN', requires_grad=True),
-        norm_eval=True,
-        style='pytorch',
-        init_cfg=dict(type='Pretrained', checkpoint='torchvision://resnet50')),
-    neck=dict(
-        type='FPN',
-        in_channels=[256, 512, 1024, 2048],
-        out_channels=256,
-        num_outs=5),
-    rpn_head=dict(
-        type='RPNHead',
-        in_channels=256,
-        feat_channels=256,
-        anchor_generator=dict(
-            type='AnchorGenerator',
-            scales=[8],
-            ratios=[0.5, 1.0, 2.0],
-            strides=[4, 8, 16, 32, 64]),
-        bbox_coder=dict(
-            type='DeltaXYWHBBoxCoder',
-            target_means=[0.0, 0.0, 0.0, 0.0],
-            target_stds=[1.0, 1.0, 1.0, 1.0]),
-        loss_cls=dict(
-            type='CrossEntropyLoss', use_sigmoid=True, loss_weight=1.0),
-        loss_bbox=dict(type='L1Loss', loss_weight=1.0)),
-    roi_head=dict(
-        type='StandardRoIHead',
-        bbox_roi_extractor=dict(
-            type='SingleRoIExtractor',
-            roi_layer=dict(type='RoIAlign', output_size=7, sampling_ratio=0),
-            out_channels=256,
-            featmap_strides=[4, 8, 16, 32]),
-        bbox_head=dict(
-            type='Shared2FCBBoxHead',
-            in_channels=256,
-            fc_out_channels=1024,
-            roi_feat_size=7,
-            num_classes=1,
-            bbox_coder=dict(
-                type='DeltaXYWHBBoxCoder',
-                target_means=[0.0, 0.0, 0.0, 0.0],
-                target_stds=[0.1, 0.1, 0.2, 0.2]),
-            reg_class_agnostic=False,
-            loss_cls=dict(
-                type='CrossEntropyLoss', use_sigmoid=False, loss_weight=1.0),
-            loss_bbox=dict(type='L1Loss', loss_weight=1.0)),
-        mask_roi_extractor=dict(
-            type='SingleRoIExtractor',
-            roi_layer=dict(type='RoIAlign', output_size=14, sampling_ratio=0),
-            out_channels=256,
-            featmap_strides=[4, 8, 16, 32]),
-        mask_head=dict(
-            type='FCNMaskHead',
-            num_convs=4,
-            in_channels=256,
-            conv_out_channels=256,
-            num_classes=1,
-            loss_mask=dict(
-                type='CrossEntropyLoss', use_mask=True, loss_weight=1.0))),
-    train_cfg=dict(
-        rpn=dict(
-            assigner=dict(
-                type='MaxIoUAssigner',
-                pos_iou_thr=0.7,
-                neg_iou_thr=0.3,
-                min_pos_iou=0.3,
-                match_low_quality=True,
-                ignore_iof_thr=-1),
-            sampler=dict(
-                type='RandomSampler',
-                num=256,
-                pos_fraction=0.5,
-                neg_pos_ub=-1,
-                add_gt_as_proposals=False),
-            allowed_border=-1,
-            pos_weight=-1,
-            debug=False),
-        rpn_proposal=dict(
-            nms_pre=2000,
-            max_per_img=1000,
-            nms=dict(type='nms', iou_threshold=0.7),
-            min_bbox_size=0),
-        rcnn=dict(
-            assigner=dict(
-                type='MaxIoUAssigner',
-                pos_iou_thr=0.5,
-                neg_iou_thr=0.5,
-                min_pos_iou=0.5,
-                match_low_quality=True,
-                ignore_iof_thr=-1),
-            sampler=dict(
-                type='RandomSampler',
-                num=512,
-                pos_fraction=0.25,
-                neg_pos_ub=-1,
-                add_gt_as_proposals=True),
-            mask_size=28,
-            pos_weight=-1,
-            debug=False)),
-    test_cfg=dict(
-        rpn=dict(
-            nms_pre=1000,
-            max_per_img=1000,
-            nms=dict(type='nms', iou_threshold=0.7),
-            min_bbox_size=0),
-        rcnn=dict(
-            score_thr=0.05,
-            nms=dict(type='nms', iou_threshold=0.5),
-            max_per_img=100,
-            mask_thr_binary=0.5)))
-dataset_type = 'CocoDataset'
-data_root = 'data/coco/'
-img_norm_cfg = dict(
-    mean=[123.675, 116.28, 103.53], std=[58.395, 57.12, 57.375], to_rgb=True)
-train_pipeline = [
-    dict(type='LoadImageFromFile'),
-    dict(type='LoadAnnotations', with_bbox=True, with_mask=True),
-    dict(type='Resize', img_scale=(1333, 800), keep_ratio=True),
-    dict(type='RandomFlip', flip_ratio=0.5),
-    dict(
-        type='Normalize',
-        mean=[123.675, 116.28, 103.53],
-        std=[58.395, 57.12, 57.375],
-        to_rgb=True),
-    dict(type='Pad', size_divisor=32),
-    dict(type='DefaultFormatBundle'),
-    dict(type='Collect', keys=['img', 'gt_bboxes', 'gt_labels', 'gt_masks'])
-]
-test_pipeline = [
-    dict(type='LoadImageFromFile'),
-    dict(
-        type='MultiScaleFlipAug',
-        img_scale=(1333, 800),
-        flip=False,
-        transforms=[
-            dict(type='Resize', keep_ratio=True),
-            dict(type='RandomFlip'),
-            dict(
-                type='Normalize',
-                mean=[123.675, 116.28, 103.53],
-                std=[58.395, 57.12, 57.375],
-                to_rgb=True),
-            dict(type='Pad', size_divisor=32),
-            dict(type='ImageToTensor', keys=['img']),
-            dict(type='Collect', keys=['img'])
-        ])
-]
-data = dict(
-    samples_per_gpu=2,
-    workers_per_gpu=2,
-    train=dict(
-        type='CocoDataset',
-        ann_file=
-        '/HOME/scz0bdh/run/mmlab_homework/Balloon/data/balloon/train/coco_train.json',
-        img_prefix=
-        '/HOME/scz0bdh/run/mmlab_homework/Balloon/data/balloon/train/',
-        pipeline=[
-            dict(type='LoadImageFromFile'),
-            dict(type='LoadAnnotations', with_bbox=True, with_mask=True),
-            dict(type='Resize', img_scale=(1333, 800), keep_ratio=True),
-            dict(type='RandomFlip', flip_ratio=0.5),
-            dict(
-                type='Normalize',
-                mean=[123.675, 116.28, 103.53],
-                std=[58.395, 57.12, 57.375],
-                to_rgb=True),
-            dict(type='Pad', size_divisor=32),
-            dict(type='DefaultFormatBundle'),
-            dict(
-                type='Collect',
-                keys=['img', 'gt_bboxes', 'gt_labels', 'gt_masks'])
-        ],
-        classes=('balloon', )),
-    val=dict(
-        type='CocoDataset',
-        ann_file=
-        '/HOME/scz0bdh/run/mmlab_homework/Balloon/data/balloon/val/coco_val.json',
-        img_prefix='/HOME/scz0bdh/run/mmlab_homework/Balloon/data/balloon/val/',
-        pipeline=[
-            dict(type='LoadImageFromFile'),
-            dict(
-                type='MultiScaleFlipAug',
-                img_scale=(1333, 800),
-                flip=False,
-                transforms=[
-                    dict(type='Resize', keep_ratio=True),
-                    dict(type='RandomFlip'),
-                    dict(
-                        type='Normalize',
-                        mean=[123.675, 116.28, 103.53],
-                        std=[58.395, 57.12, 57.375],
-                        to_rgb=True),
-                    dict(type='Pad', size_divisor=32),
-                    dict(type='ImageToTensor', keys=['img']),
-                    dict(type='Collect', keys=['img'])
-                ])
-        ],
-        classes=('balloon', )),
-    test=dict(
-        type='CocoDataset',
-        ann_file='data/coco/annotations/instances_val2017.json',
-        img_prefix='data/coco/val2017/',
-        pipeline=[
-            dict(type='LoadImageFromFile'),
-            dict(
-                type='MultiScaleFlipAug',
-                img_scale=(1333, 800),
-                flip=False,
-                transforms=[
-                    dict(type='Resize', keep_ratio=True),
-                    dict(type='RandomFlip'),
-                    dict(
-                        type='Normalize',
-                        mean=[123.675, 116.28, 103.53],
-                        std=[58.395, 57.12, 57.375],
-                        to_rgb=True),
-                    dict(type='Pad', size_divisor=32),
-                    dict(type='ImageToTensor', keys=['img']),
-                    dict(type='Collect', keys=['img'])
-                ])
-        ]))
-evaluation = dict(metric=['bbox', 'segm'])
-optimizer = dict(type='Adam', lr=0.0003, weight_decay=0.0001)
-optimizer_config = dict(grad_clip=None)
-lr_config = dict(policy='CosineAnnealing', min_lr=0, by_epoch=False)
-runner = dict(type='EpochBasedRunner', max_epochs=20)
-checkpoint_config = dict(interval=1)
-log_config = dict(interval=100, hooks=[dict(type='TextLoggerHook')])
-custom_hooks = [dict(type='NumClassCheckHook')]
-dist_params = dict(backend='nccl')
-log_level = 'INFO'
-load_from = './checkpoints/mask_rcnn_r50_fpn_1x_coco_20200205-d4b0c5d6.pth'
-resume_from = None
-workflow = [('train', 2), ('val', 1)]
-opencv_num_threads = 0
-mp_start_method = 'fork'
-auto_scale_lr = dict(enable=False, base_batch_size=16)
-work_dir = 'work_dir'
-auto_resume = False
-gpu_ids = [0]
-
-2023-02-09 14:52:10,036 - mmdet - INFO - Set random seed to 2003505289, deterministic: False
-2023-02-09 14:52:10,397 - mmcv - INFO - initialize ResNet with init_cfg {'type': 'Pretrained', 'checkpoint': 'torchvision://resnet50'}
-2023-02-09 14:52:10,397 - mmcv - INFO - load model from: torchvision://resnet50
-2023-02-09 14:52:10,397 - mmcv - INFO - load checkpoint from torchvision path: torchvision://resnet50
-2023-02-09 14:52:10,735 - mmcv - WARNING - The model and loaded state dict do not match exactly
-
-unexpected key in source state_dict: fc.weight, fc.bias
-
-2023-02-09 14:52:10,748 - mmcv - INFO - initialize FPN with init_cfg {'type': 'Xavier', 'layer': 'Conv2d', 'distribution': 'uniform'}
-2023-02-09 14:52:10,766 - mmcv - INFO - initialize RPNHead with init_cfg {'type': 'Normal', 'layer': 'Conv2d', 'std': 0.01}
-2023-02-09 14:52:10,769 - mmcv - INFO - initialize Shared2FCBBoxHead with init_cfg [{'type': 'Normal', 'std': 0.01, 'override': {'name': 'fc_cls'}}, {'type': 'Normal', 'std': 0.001, 'override': {'name': 'fc_reg'}}, {'type': 'Xavier', 'distribution': 'uniform', 'override': [{'name': 'shared_fcs'}, {'name': 'cls_fcs'}, {'name': 'reg_fcs'}]}]
-2023-02-09 14:52:10,889 - mmcv - INFO - 
-backbone.conv1.weight - torch.Size([64, 3, 7, 7]): 
-PretrainedInit: load from torchvision://resnet50 
- 
-2023-02-09 14:52:10,889 - mmcv - INFO - 
-backbone.bn1.weight - torch.Size([64]): 
-PretrainedInit: load from torchvision://resnet50 
- 
-2023-02-09 14:52:10,889 - mmcv - INFO - 
-backbone.bn1.bias - torch.Size([64]): 
-PretrainedInit: load from torchvision://resnet50 
- 
-2023-02-09 14:52:10,890 - mmcv - INFO - 
-backbone.layer1.0.conv1.weight - torch.Size([64, 64, 1, 1]): 
-PretrainedInit: load from torchvision://resnet50 
- 
-2023-02-09 14:52:10,890 - mmcv - INFO - 
-backbone.layer1.0.bn1.weight - torch.Size([64]): 
-PretrainedInit: load from torchvision://resnet50 
- 
-2023-02-09 14:52:10,890 - mmcv - INFO - 
-backbone.layer1.0.bn1.bias - torch.Size([64]): 
-PretrainedInit: load from torchvision://resnet50 
- 
-2023-02-09 14:52:10,890 - mmcv - INFO - 
-backbone.layer1.0.conv2.weight - torch.Size([64, 64, 3, 3]): 
-PretrainedInit: load from torchvision://resnet50 
- 
-2023-02-09 14:52:10,890 - mmcv - INFO - 
-backbone.layer1.0.bn2.weight - torch.Size([64]): 
-PretrainedInit: load from torchvision://resnet50 
- 
-2023-02-09 14:52:10,890 - mmcv - INFO - 
-backbone.layer1.0.bn2.bias - torch.Size([64]): 
-PretrainedInit: load from torchvision://resnet50 
- 
-2023-02-09 14:52:10,890 - mmcv - INFO - 
-backbone.layer1.0.conv3.weight - torch.Size([256, 64, 1, 1]): 
-PretrainedInit: load from torchvision://resnet50 
- 
-2023-02-09 14:52:10,890 - mmcv - INFO - 
-backbone.layer1.0.bn3.weight - torch.Size([256]): 
-PretrainedInit: load from torchvision://resnet50 
- 
-2023-02-09 14:52:10,890 - mmcv - INFO - 
-backbone.layer1.0.bn3.bias - torch.Size([256]): 
-PretrainedInit: load from torchvision://resnet50 
- 
-2023-02-09 14:52:10,890 - mmcv - INFO - 
-backbone.layer1.0.downsample.0.weight - torch.Size([256, 64, 1, 1]): 
-PretrainedInit: load from torchvision://resnet50 
- 
-2023-02-09 14:52:10,890 - mmcv - INFO - 
-backbone.layer1.0.downsample.1.weight - torch.Size([256]): 
-PretrainedInit: load from torchvision://resnet50 
- 
-2023-02-09 14:52:10,890 - mmcv - INFO - 
-backbone.layer1.0.downsample.1.bias - torch.Size([256]): 
-PretrainedInit: load from torchvision://resnet50 
- 
-2023-02-09 14:52:10,890 - mmcv - INFO - 
-backbone.layer1.1.conv1.weight - torch.Size([64, 256, 1, 1]): 
-PretrainedInit: load from torchvision://resnet50 
- 
-2023-02-09 14:52:10,890 - mmcv - INFO - 
-backbone.layer1.1.bn1.weight - torch.Size([64]): 
-PretrainedInit: load from torchvision://resnet50 
- 
-2023-02-09 14:52:10,890 - mmcv - INFO - 
-backbone.layer1.1.bn1.bias - torch.Size([64]): 
-PretrainedInit: load from torchvision://resnet50 
- 
-2023-02-09 14:52:10,890 - mmcv - INFO - 
-backbone.layer1.1.conv2.weight - torch.Size([64, 64, 3, 3]): 
-PretrainedInit: load from torchvision://resnet50 
- 
-2023-02-09 14:52:10,890 - mmcv - INFO - 
-backbone.layer1.1.bn2.weight - torch.Size([64]): 
-PretrainedInit: load from torchvision://resnet50 
- 
-2023-02-09 14:52:10,890 - mmcv - INFO - 
-backbone.layer1.1.bn2.bias - torch.Size([64]): 
-PretrainedInit: load from torchvision://resnet50 
- 
-2023-02-09 14:52:10,890 - mmcv - INFO - 
-backbone.layer1.1.conv3.weight - torch.Size([256, 64, 1, 1]): 
-PretrainedInit: load from torchvision://resnet50 
- 
-2023-02-09 14:52:10,890 - mmcv - INFO - 
-backbone.layer1.1.bn3.weight - torch.Size([256]): 
-PretrainedInit: load from torchvision://resnet50 
- 
-2023-02-09 14:52:10,890 - mmcv - INFO - 
-backbone.layer1.1.bn3.bias - torch.Size([256]): 
-PretrainedInit: load from torchvision://resnet50 
- 
-2023-02-09 14:52:10,890 - mmcv - INFO - 
-backbone.layer1.2.conv1.weight - torch.Size([64, 256, 1, 1]): 
-PretrainedInit: load from torchvision://resnet50 
- 
-2023-02-09 14:52:10,890 - mmcv - INFO - 
-backbone.layer1.2.bn1.weight - torch.Size([64]): 
-PretrainedInit: load from torchvision://resnet50 
- 
-2023-02-09 14:52:10,891 - mmcv - INFO - 
-backbone.layer1.2.bn1.bias - torch.Size([64]): 
-PretrainedInit: load from torchvision://resnet50 
- 
-2023-02-09 14:52:10,891 - mmcv - INFO - 
-backbone.layer1.2.conv2.weight - torch.Size([64, 64, 3, 3]): 
-PretrainedInit: load from torchvision://resnet50 
- 
-2023-02-09 14:52:10,891 - mmcv - INFO - 
-backbone.layer1.2.bn2.weight - torch.Size([64]): 
-PretrainedInit: load from torchvision://resnet50 
- 
-2023-02-09 14:52:10,891 - mmcv - INFO - 
-backbone.layer1.2.bn2.bias - torch.Size([64]): 
-PretrainedInit: load from torchvision://resnet50 
- 
-2023-02-09 14:52:10,891 - mmcv - INFO - 
-backbone.layer1.2.conv3.weight - torch.Size([256, 64, 1, 1]): 
-PretrainedInit: load from torchvision://resnet50 
- 
-2023-02-09 14:52:10,891 - mmcv - INFO - 
-backbone.layer1.2.bn3.weight - torch.Size([256]): 
-PretrainedInit: load from torchvision://resnet50 
- 
-2023-02-09 14:52:10,891 - mmcv - INFO - 
-backbone.layer1.2.bn3.bias - torch.Size([256]): 
-PretrainedInit: load from torchvision://resnet50 
- 
-2023-02-09 14:52:10,891 - mmcv - INFO - 
-backbone.layer2.0.conv1.weight - torch.Size([128, 256, 1, 1]): 
-PretrainedInit: load from torchvision://resnet50 
- 
-2023-02-09 14:52:10,891 - mmcv - INFO - 
-backbone.layer2.0.bn1.weight - torch.Size([128]): 
-PretrainedInit: load from torchvision://resnet50 
- 
-2023-02-09 14:52:10,891 - mmcv - INFO - 
-backbone.layer2.0.bn1.bias - torch.Size([128]): 
-PretrainedInit: load from torchvision://resnet50 
- 
-2023-02-09 14:52:10,891 - mmcv - INFO - 
-backbone.layer2.0.conv2.weight - torch.Size([128, 128, 3, 3]): 
-PretrainedInit: load from torchvision://resnet50 
- 
-2023-02-09 14:52:10,891 - mmcv - INFO - 
-backbone.layer2.0.bn2.weight - torch.Size([128]): 
-PretrainedInit: load from torchvision://resnet50 
- 
-2023-02-09 14:52:10,891 - mmcv - INFO - 
-backbone.layer2.0.bn2.bias - torch.Size([128]): 
-PretrainedInit: load from torchvision://resnet50 
- 
-2023-02-09 14:52:10,891 - mmcv - INFO - 
-backbone.layer2.0.conv3.weight - torch.Size([512, 128, 1, 1]): 
-PretrainedInit: load from torchvision://resnet50 
- 
-2023-02-09 14:52:10,891 - mmcv - INFO - 
-backbone.layer2.0.bn3.weight - torch.Size([512]): 
-PretrainedInit: load from torchvision://resnet50 
- 
-2023-02-09 14:52:10,891 - mmcv - INFO - 
-backbone.layer2.0.bn3.bias - torch.Size([512]): 
-PretrainedInit: load from torchvision://resnet50 
- 
-2023-02-09 14:52:10,891 - mmcv - INFO - 
-backbone.layer2.0.downsample.0.weight - torch.Size([512, 256, 1, 1]): 
-PretrainedInit: load from torchvision://resnet50 
- 
-2023-02-09 14:52:10,891 - mmcv - INFO - 
-backbone.layer2.0.downsample.1.weight - torch.Size([512]): 
-PretrainedInit: load from torchvision://resnet50 
- 
-2023-02-09 14:52:10,891 - mmcv - INFO - 
-backbone.layer2.0.downsample.1.bias - torch.Size([512]): 
-PretrainedInit: load from torchvision://resnet50 
- 
-2023-02-09 14:52:10,891 - mmcv - INFO - 
-backbone.layer2.1.conv1.weight - torch.Size([128, 512, 1, 1]): 
-PretrainedInit: load from torchvision://resnet50 
- 
-2023-02-09 14:52:10,891 - mmcv - INFO - 
-backbone.layer2.1.bn1.weight - torch.Size([128]): 
-PretrainedInit: load from torchvision://resnet50 
- 
-2023-02-09 14:52:10,891 - mmcv - INFO - 
-backbone.layer2.1.bn1.bias - torch.Size([128]): 
-PretrainedInit: load from torchvision://resnet50 
- 
-2023-02-09 14:52:10,891 - mmcv - INFO - 
-backbone.layer2.1.conv2.weight - torch.Size([128, 128, 3, 3]): 
-PretrainedInit: load from torchvision://resnet50 
- 
-2023-02-09 14:52:10,891 - mmcv - INFO - 
-backbone.layer2.1.bn2.weight - torch.Size([128]): 
-PretrainedInit: load from torchvision://resnet50 
- 
-2023-02-09 14:52:10,891 - mmcv - INFO - 
-backbone.layer2.1.bn2.bias - torch.Size([128]): 
-PretrainedInit: load from torchvision://resnet50 
- 
-2023-02-09 14:52:10,892 - mmcv - INFO - 
-backbone.layer2.1.conv3.weight - torch.Size([512, 128, 1, 1]): 
-PretrainedInit: load from torchvision://resnet50 
- 
-2023-02-09 14:52:10,892 - mmcv - INFO - 
-backbone.layer2.1.bn3.weight - torch.Size([512]): 
-PretrainedInit: load from torchvision://resnet50 
- 
-2023-02-09 14:52:10,892 - mmcv - INFO - 
-backbone.layer2.1.bn3.bias - torch.Size([512]): 
-PretrainedInit: load from torchvision://resnet50 
- 
-2023-02-09 14:52:10,892 - mmcv - INFO - 
-backbone.layer2.2.conv1.weight - torch.Size([128, 512, 1, 1]): 
-PretrainedInit: load from torchvision://resnet50 
- 
-2023-02-09 14:52:10,892 - mmcv - INFO - 
-backbone.layer2.2.bn1.weight - torch.Size([128]): 
-PretrainedInit: load from torchvision://resnet50 
- 
-2023-02-09 14:52:10,892 - mmcv - INFO - 
-backbone.layer2.2.bn1.bias - torch.Size([128]): 
-PretrainedInit: load from torchvision://resnet50 
- 
-2023-02-09 14:52:10,892 - mmcv - INFO - 
-backbone.layer2.2.conv2.weight - torch.Size([128, 128, 3, 3]): 
-PretrainedInit: load from torchvision://resnet50 
- 
-2023-02-09 14:52:10,892 - mmcv - INFO - 
-backbone.layer2.2.bn2.weight - torch.Size([128]): 
-PretrainedInit: load from torchvision://resnet50 
- 
-2023-02-09 14:52:10,892 - mmcv - INFO - 
-backbone.layer2.2.bn2.bias - torch.Size([128]): 
-PretrainedInit: load from torchvision://resnet50 
- 
-2023-02-09 14:52:10,892 - mmcv - INFO - 
-backbone.layer2.2.conv3.weight - torch.Size([512, 128, 1, 1]): 
-PretrainedInit: load from torchvision://resnet50 
- 
-2023-02-09 14:52:10,892 - mmcv - INFO - 
-backbone.layer2.2.bn3.weight - torch.Size([512]): 
-PretrainedInit: load from torchvision://resnet50 
- 
-2023-02-09 14:52:10,892 - mmcv - INFO - 
-backbone.layer2.2.bn3.bias - torch.Size([512]): 
-PretrainedInit: load from torchvision://resnet50 
- 
-2023-02-09 14:52:10,892 - mmcv - INFO - 
-backbone.layer2.3.conv1.weight - torch.Size([128, 512, 1, 1]): 
-PretrainedInit: load from torchvision://resnet50 
- 
-2023-02-09 14:52:10,892 - mmcv - INFO - 
-backbone.layer2.3.bn1.weight - torch.Size([128]): 
-PretrainedInit: load from torchvision://resnet50 
- 
-2023-02-09 14:52:10,892 - mmcv - INFO - 
-backbone.layer2.3.bn1.bias - torch.Size([128]): 
-PretrainedInit: load from torchvision://resnet50 
- 
-2023-02-09 14:52:10,892 - mmcv - INFO - 
-backbone.layer2.3.conv2.weight - torch.Size([128, 128, 3, 3]): 
-PretrainedInit: load from torchvision://resnet50 
- 
-2023-02-09 14:52:10,892 - mmcv - INFO - 
-backbone.layer2.3.bn2.weight - torch.Size([128]): 
-PretrainedInit: load from torchvision://resnet50 
- 
-2023-02-09 14:52:10,892 - mmcv - INFO - 
-backbone.layer2.3.bn2.bias - torch.Size([128]): 
-PretrainedInit: load from torchvision://resnet50 
- 
-2023-02-09 14:52:10,892 - mmcv - INFO - 
-backbone.layer2.3.conv3.weight - torch.Size([512, 128, 1, 1]): 
-PretrainedInit: load from torchvision://resnet50 
- 
-2023-02-09 14:52:10,892 - mmcv - INFO - 
-backbone.layer2.3.bn3.weight - torch.Size([512]): 
-PretrainedInit: load from torchvision://resnet50 
- 
-2023-02-09 14:52:10,892 - mmcv - INFO - 
-backbone.layer2.3.bn3.bias - torch.Size([512]): 
-PretrainedInit: load from torchvision://resnet50 
- 
-2023-02-09 14:52:10,892 - mmcv - INFO - 
-backbone.layer3.0.conv1.weight - torch.Size([256, 512, 1, 1]): 
-PretrainedInit: load from torchvision://resnet50 
- 
-2023-02-09 14:52:10,892 - mmcv - INFO - 
-backbone.layer3.0.bn1.weight - torch.Size([256]): 
-PretrainedInit: load from torchvision://resnet50 
- 
-2023-02-09 14:52:10,892 - mmcv - INFO - 
-backbone.layer3.0.bn1.bias - torch.Size([256]): 
-PretrainedInit: load from torchvision://resnet50 
- 
-2023-02-09 14:52:10,892 - mmcv - INFO - 
-backbone.layer3.0.conv2.weight - torch.Size([256, 256, 3, 3]): 
-PretrainedInit: load from torchvision://resnet50 
- 
-2023-02-09 14:52:10,893 - mmcv - INFO - 
-backbone.layer3.0.bn2.weight - torch.Size([256]): 
-PretrainedInit: load from torchvision://resnet50 
- 
-2023-02-09 14:52:10,893 - mmcv - INFO - 
-backbone.layer3.0.bn2.bias - torch.Size([256]): 
-PretrainedInit: load from torchvision://resnet50 
- 
-2023-02-09 14:52:10,893 - mmcv - INFO - 
-backbone.layer3.0.conv3.weight - torch.Size([1024, 256, 1, 1]): 
-PretrainedInit: load from torchvision://resnet50 
- 
-2023-02-09 14:52:10,893 - mmcv - INFO - 
-backbone.layer3.0.bn3.weight - torch.Size([1024]): 
-PretrainedInit: load from torchvision://resnet50 
- 
-2023-02-09 14:52:10,893 - mmcv - INFO - 
-backbone.layer3.0.bn3.bias - torch.Size([1024]): 
-PretrainedInit: load from torchvision://resnet50 
- 
-2023-02-09 14:52:10,893 - mmcv - INFO - 
-backbone.layer3.0.downsample.0.weight - torch.Size([1024, 512, 1, 1]): 
-PretrainedInit: load from torchvision://resnet50 
- 
-2023-02-09 14:52:10,893 - mmcv - INFO - 
-backbone.layer3.0.downsample.1.weight - torch.Size([1024]): 
-PretrainedInit: load from torchvision://resnet50 
- 
-2023-02-09 14:52:10,893 - mmcv - INFO - 
-backbone.layer3.0.downsample.1.bias - torch.Size([1024]): 
-PretrainedInit: load from torchvision://resnet50 
- 
-2023-02-09 14:52:10,893 - mmcv - INFO - 
-backbone.layer3.1.conv1.weight - torch.Size([256, 1024, 1, 1]): 
-PretrainedInit: load from torchvision://resnet50 
- 
-2023-02-09 14:52:10,893 - mmcv - INFO - 
-backbone.layer3.1.bn1.weight - torch.Size([256]): 
-PretrainedInit: load from torchvision://resnet50 
- 
-2023-02-09 14:52:10,893 - mmcv - INFO - 
-backbone.layer3.1.bn1.bias - torch.Size([256]): 
-PretrainedInit: load from torchvision://resnet50 
- 
-2023-02-09 14:52:10,893 - mmcv - INFO - 
-backbone.layer3.1.conv2.weight - torch.Size([256, 256, 3, 3]): 
-PretrainedInit: load from torchvision://resnet50 
- 
-2023-02-09 14:52:10,893 - mmcv - INFO - 
-backbone.layer3.1.bn2.weight - torch.Size([256]): 
-PretrainedInit: load from torchvision://resnet50 
- 
-2023-02-09 14:52:10,893 - mmcv - INFO - 
-backbone.layer3.1.bn2.bias - torch.Size([256]): 
-PretrainedInit: load from torchvision://resnet50 
- 
-2023-02-09 14:52:10,893 - mmcv - INFO - 
-backbone.layer3.1.conv3.weight - torch.Size([1024, 256, 1, 1]): 
-PretrainedInit: load from torchvision://resnet50 
- 
-2023-02-09 14:52:10,893 - mmcv - INFO - 
-backbone.layer3.1.bn3.weight - torch.Size([1024]): 
-PretrainedInit: load from torchvision://resnet50 
- 
-2023-02-09 14:52:10,893 - mmcv - INFO - 
-backbone.layer3.1.bn3.bias - torch.Size([1024]): 
-PretrainedInit: load from torchvision://resnet50 
- 
-2023-02-09 14:52:10,893 - mmcv - INFO - 
-backbone.layer3.2.conv1.weight - torch.Size([256, 1024, 1, 1]): 
-PretrainedInit: load from torchvision://resnet50 
- 
-2023-02-09 14:52:10,893 - mmcv - INFO - 
-backbone.layer3.2.bn1.weight - torch.Size([256]): 
-PretrainedInit: load from torchvision://resnet50 
- 
-2023-02-09 14:52:10,893 - mmcv - INFO - 
-backbone.layer3.2.bn1.bias - torch.Size([256]): 
-PretrainedInit: load from torchvision://resnet50 
- 
-2023-02-09 14:52:10,893 - mmcv - INFO - 
-backbone.layer3.2.conv2.weight - torch.Size([256, 256, 3, 3]): 
-PretrainedInit: load from torchvision://resnet50 
- 
-2023-02-09 14:52:10,893 - mmcv - INFO - 
-backbone.layer3.2.bn2.weight - torch.Size([256]): 
-PretrainedInit: load from torchvision://resnet50 
- 
-2023-02-09 14:52:10,893 - mmcv - INFO - 
-backbone.layer3.2.bn2.bias - torch.Size([256]): 
-PretrainedInit: load from torchvision://resnet50 
- 
-2023-02-09 14:52:10,893 - mmcv - INFO - 
-backbone.layer3.2.conv3.weight - torch.Size([1024, 256, 1, 1]): 
-PretrainedInit: load from torchvision://resnet50 
- 
-2023-02-09 14:52:10,893 - mmcv - INFO - 
-backbone.layer3.2.bn3.weight - torch.Size([1024]): 
-PretrainedInit: load from torchvision://resnet50 
- 
-2023-02-09 14:52:10,894 - mmcv - INFO - 
-backbone.layer3.2.bn3.bias - torch.Size([1024]): 
-PretrainedInit: load from torchvision://resnet50 
- 
-2023-02-09 14:52:10,894 - mmcv - INFO - 
-backbone.layer3.3.conv1.weight - torch.Size([256, 1024, 1, 1]): 
-PretrainedInit: load from torchvision://resnet50 
- 
-2023-02-09 14:52:10,894 - mmcv - INFO - 
-backbone.layer3.3.bn1.weight - torch.Size([256]): 
-PretrainedInit: load from torchvision://resnet50 
- 
-2023-02-09 14:52:10,894 - mmcv - INFO - 
-backbone.layer3.3.bn1.bias - torch.Size([256]): 
-PretrainedInit: load from torchvision://resnet50 
- 
-2023-02-09 14:52:10,894 - mmcv - INFO - 
-backbone.layer3.3.conv2.weight - torch.Size([256, 256, 3, 3]): 
-PretrainedInit: load from torchvision://resnet50 
- 
-2023-02-09 14:52:10,894 - mmcv - INFO - 
-backbone.layer3.3.bn2.weight - torch.Size([256]): 
-PretrainedInit: load from torchvision://resnet50 
- 
-2023-02-09 14:52:10,894 - mmcv - INFO - 
-backbone.layer3.3.bn2.bias - torch.Size([256]): 
-PretrainedInit: load from torchvision://resnet50 
- 
-2023-02-09 14:52:10,894 - mmcv - INFO - 
-backbone.layer3.3.conv3.weight - torch.Size([1024, 256, 1, 1]): 
-PretrainedInit: load from torchvision://resnet50 
- 
-2023-02-09 14:52:10,894 - mmcv - INFO - 
-backbone.layer3.3.bn3.weight - torch.Size([1024]): 
-PretrainedInit: load from torchvision://resnet50 
- 
-2023-02-09 14:52:10,894 - mmcv - INFO - 
-backbone.layer3.3.bn3.bias - torch.Size([1024]): 
-PretrainedInit: load from torchvision://resnet50 
- 
-2023-02-09 14:52:10,894 - mmcv - INFO - 
-backbone.layer3.4.conv1.weight - torch.Size([256, 1024, 1, 1]): 
-PretrainedInit: load from torchvision://resnet50 
- 
-2023-02-09 14:52:10,894 - mmcv - INFO - 
-backbone.layer3.4.bn1.weight - torch.Size([256]): 
-PretrainedInit: load from torchvision://resnet50 
- 
-2023-02-09 14:52:10,894 - mmcv - INFO - 
-backbone.layer3.4.bn1.bias - torch.Size([256]): 
-PretrainedInit: load from torchvision://resnet50 
- 
-2023-02-09 14:52:10,894 - mmcv - INFO - 
-backbone.layer3.4.conv2.weight - torch.Size([256, 256, 3, 3]): 
-PretrainedInit: load from torchvision://resnet50 
- 
-2023-02-09 14:52:10,894 - mmcv - INFO - 
-backbone.layer3.4.bn2.weight - torch.Size([256]): 
-PretrainedInit: load from torchvision://resnet50 
- 
-2023-02-09 14:52:10,894 - mmcv - INFO - 
-backbone.layer3.4.bn2.bias - torch.Size([256]): 
-PretrainedInit: load from torchvision://resnet50 
- 
-2023-02-09 14:52:10,894 - mmcv - INFO - 
-backbone.layer3.4.conv3.weight - torch.Size([1024, 256, 1, 1]): 
-PretrainedInit: load from torchvision://resnet50 
- 
-2023-02-09 14:52:10,894 - mmcv - INFO - 
-backbone.layer3.4.bn3.weight - torch.Size([1024]): 
-PretrainedInit: load from torchvision://resnet50 
- 
-2023-02-09 14:52:10,894 - mmcv - INFO - 
-backbone.layer3.4.bn3.bias - torch.Size([1024]): 
-PretrainedInit: load from torchvision://resnet50 
- 
-2023-02-09 14:52:10,894 - mmcv - INFO - 
-backbone.layer3.5.conv1.weight - torch.Size([256, 1024, 1, 1]): 
-PretrainedInit: load from torchvision://resnet50 
- 
-2023-02-09 14:52:10,894 - mmcv - INFO - 
-backbone.layer3.5.bn1.weight - torch.Size([256]): 
-PretrainedInit: load from torchvision://resnet50 
- 
-2023-02-09 14:52:10,894 - mmcv - INFO - 
-backbone.layer3.5.bn1.bias - torch.Size([256]): 
-PretrainedInit: load from torchvision://resnet50 
- 
-2023-02-09 14:52:10,894 - mmcv - INFO - 
-backbone.layer3.5.conv2.weight - torch.Size([256, 256, 3, 3]): 
-PretrainedInit: load from torchvision://resnet50 
- 
-2023-02-09 14:52:10,894 - mmcv - INFO - 
-backbone.layer3.5.bn2.weight - torch.Size([256]): 
-PretrainedInit: load from torchvision://resnet50 
- 
-2023-02-09 14:52:10,894 - mmcv - INFO - 
-backbone.layer3.5.bn2.bias - torch.Size([256]): 
-PretrainedInit: load from torchvision://resnet50 
- 
-2023-02-09 14:52:10,895 - mmcv - INFO - 
-backbone.layer3.5.conv3.weight - torch.Size([1024, 256, 1, 1]): 
-PretrainedInit: load from torchvision://resnet50 
- 
-2023-02-09 14:52:10,895 - mmcv - INFO - 
-backbone.layer3.5.bn3.weight - torch.Size([1024]): 
-PretrainedInit: load from torchvision://resnet50 
- 
-2023-02-09 14:52:10,895 - mmcv - INFO - 
-backbone.layer3.5.bn3.bias - torch.Size([1024]): 
-PretrainedInit: load from torchvision://resnet50 
- 
-2023-02-09 14:52:10,895 - mmcv - INFO - 
-backbone.layer4.0.conv1.weight - torch.Size([512, 1024, 1, 1]): 
-PretrainedInit: load from torchvision://resnet50 
- 
-2023-02-09 14:52:10,895 - mmcv - INFO - 
-backbone.layer4.0.bn1.weight - torch.Size([512]): 
-PretrainedInit: load from torchvision://resnet50 
- 
-2023-02-09 14:52:10,895 - mmcv - INFO - 
-backbone.layer4.0.bn1.bias - torch.Size([512]): 
-PretrainedInit: load from torchvision://resnet50 
- 
-2023-02-09 14:52:10,895 - mmcv - INFO - 
-backbone.layer4.0.conv2.weight - torch.Size([512, 512, 3, 3]): 
-PretrainedInit: load from torchvision://resnet50 
- 
-2023-02-09 14:52:10,895 - mmcv - INFO - 
-backbone.layer4.0.bn2.weight - torch.Size([512]): 
-PretrainedInit: load from torchvision://resnet50 
- 
-2023-02-09 14:52:10,895 - mmcv - INFO - 
-backbone.layer4.0.bn2.bias - torch.Size([512]): 
-PretrainedInit: load from torchvision://resnet50 
- 
-2023-02-09 14:52:10,895 - mmcv - INFO - 
-backbone.layer4.0.conv3.weight - torch.Size([2048, 512, 1, 1]): 
-PretrainedInit: load from torchvision://resnet50 
- 
-2023-02-09 14:52:10,895 - mmcv - INFO - 
-backbone.layer4.0.bn3.weight - torch.Size([2048]): 
-PretrainedInit: load from torchvision://resnet50 
- 
-2023-02-09 14:52:10,895 - mmcv - INFO - 
-backbone.layer4.0.bn3.bias - torch.Size([2048]): 
-PretrainedInit: load from torchvision://resnet50 
- 
-2023-02-09 14:52:10,895 - mmcv - INFO - 
-backbone.layer4.0.downsample.0.weight - torch.Size([2048, 1024, 1, 1]): 
-PretrainedInit: load from torchvision://resnet50 
- 
-2023-02-09 14:52:10,895 - mmcv - INFO - 
-backbone.layer4.0.downsample.1.weight - torch.Size([2048]): 
-PretrainedInit: load from torchvision://resnet50 
- 
-2023-02-09 14:52:10,895 - mmcv - INFO - 
-backbone.layer4.0.downsample.1.bias - torch.Size([2048]): 
-PretrainedInit: load from torchvision://resnet50 
- 
-2023-02-09 14:52:10,895 - mmcv - INFO - 
-backbone.layer4.1.conv1.weight - torch.Size([512, 2048, 1, 1]): 
-PretrainedInit: load from torchvision://resnet50 
- 
-2023-02-09 14:52:10,895 - mmcv - INFO - 
-backbone.layer4.1.bn1.weight - torch.Size([512]): 
-PretrainedInit: load from torchvision://resnet50 
- 
-2023-02-09 14:52:10,895 - mmcv - INFO - 
-backbone.layer4.1.bn1.bias - torch.Size([512]): 
-PretrainedInit: load from torchvision://resnet50 
- 
-2023-02-09 14:52:10,895 - mmcv - INFO - 
-backbone.layer4.1.conv2.weight - torch.Size([512, 512, 3, 3]): 
-PretrainedInit: load from torchvision://resnet50 
- 
-2023-02-09 14:52:10,895 - mmcv - INFO - 
-backbone.layer4.1.bn2.weight - torch.Size([512]): 
-PretrainedInit: load from torchvision://resnet50 
- 
-2023-02-09 14:52:10,895 - mmcv - INFO - 
-backbone.layer4.1.bn2.bias - torch.Size([512]): 
-PretrainedInit: load from torchvision://resnet50 
- 
-2023-02-09 14:52:10,895 - mmcv - INFO - 
-backbone.layer4.1.conv3.weight - torch.Size([2048, 512, 1, 1]): 
-PretrainedInit: load from torchvision://resnet50 
- 
-2023-02-09 14:52:10,895 - mmcv - INFO - 
-backbone.layer4.1.bn3.weight - torch.Size([2048]): 
-PretrainedInit: load from torchvision://resnet50 
- 
-2023-02-09 14:52:10,895 - mmcv - INFO - 
-backbone.layer4.1.bn3.bias - torch.Size([2048]): 
-PretrainedInit: load from torchvision://resnet50 
- 
-2023-02-09 14:52:10,895 - mmcv - INFO - 
-backbone.layer4.2.conv1.weight - torch.Size([512, 2048, 1, 1]): 
-PretrainedInit: load from torchvision://resnet50 
- 
-2023-02-09 14:52:10,896 - mmcv - INFO - 
-backbone.layer4.2.bn1.weight - torch.Size([512]): 
-PretrainedInit: load from torchvision://resnet50 
- 
-2023-02-09 14:52:10,896 - mmcv - INFO - 
-backbone.layer4.2.bn1.bias - torch.Size([512]): 
-PretrainedInit: load from torchvision://resnet50 
- 
-2023-02-09 14:52:10,896 - mmcv - INFO - 
-backbone.layer4.2.conv2.weight - torch.Size([512, 512, 3, 3]): 
-PretrainedInit: load from torchvision://resnet50 
- 
-2023-02-09 14:52:10,896 - mmcv - INFO - 
-backbone.layer4.2.bn2.weight - torch.Size([512]): 
-PretrainedInit: load from torchvision://resnet50 
- 
-2023-02-09 14:52:10,896 - mmcv - INFO - 
-backbone.layer4.2.bn2.bias - torch.Size([512]): 
-PretrainedInit: load from torchvision://resnet50 
- 
-2023-02-09 14:52:10,896 - mmcv - INFO - 
-backbone.layer4.2.conv3.weight - torch.Size([2048, 512, 1, 1]): 
-PretrainedInit: load from torchvision://resnet50 
- 
-2023-02-09 14:52:10,896 - mmcv - INFO - 
-backbone.layer4.2.bn3.weight - torch.Size([2048]): 
-PretrainedInit: load from torchvision://resnet50 
- 
-2023-02-09 14:52:10,896 - mmcv - INFO - 
-backbone.layer4.2.bn3.bias - torch.Size([2048]): 
-PretrainedInit: load from torchvision://resnet50 
- 
-2023-02-09 14:52:10,896 - mmcv - INFO - 
-neck.lateral_convs.0.conv.weight - torch.Size([256, 256, 1, 1]): 
-XavierInit: gain=1, distribution=uniform, bias=0 
- 
-2023-02-09 14:52:10,896 - mmcv - INFO - 
-neck.lateral_convs.0.conv.bias - torch.Size([256]): 
-The value is the same before and after calling `init_weights` of MaskRCNN  
- 
-2023-02-09 14:52:10,896 - mmcv - INFO - 
-neck.lateral_convs.1.conv.weight - torch.Size([256, 512, 1, 1]): 
-XavierInit: gain=1, distribution=uniform, bias=0 
- 
-2023-02-09 14:52:10,896 - mmcv - INFO - 
-neck.lateral_convs.1.conv.bias - torch.Size([256]): 
-The value is the same before and after calling `init_weights` of MaskRCNN  
- 
-2023-02-09 14:52:10,896 - mmcv - INFO - 
-neck.lateral_convs.2.conv.weight - torch.Size([256, 1024, 1, 1]): 
-XavierInit: gain=1, distribution=uniform, bias=0 
- 
-2023-02-09 14:52:10,896 - mmcv - INFO - 
-neck.lateral_convs.2.conv.bias - torch.Size([256]): 
-The value is the same before and after calling `init_weights` of MaskRCNN  
- 
-2023-02-09 14:52:10,896 - mmcv - INFO - 
-neck.lateral_convs.3.conv.weight - torch.Size([256, 2048, 1, 1]): 
-XavierInit: gain=1, distribution=uniform, bias=0 
- 
-2023-02-09 14:52:10,896 - mmcv - INFO - 
-neck.lateral_convs.3.conv.bias - torch.Size([256]): 
-The value is the same before and after calling `init_weights` of MaskRCNN  
- 
-2023-02-09 14:52:10,896 - mmcv - INFO - 
-neck.fpn_convs.0.conv.weight - torch.Size([256, 256, 3, 3]): 
-XavierInit: gain=1, distribution=uniform, bias=0 
- 
-2023-02-09 14:52:10,896 - mmcv - INFO - 
-neck.fpn_convs.0.conv.bias - torch.Size([256]): 
-The value is the same before and after calling `init_weights` of MaskRCNN  
- 
-2023-02-09 14:52:10,896 - mmcv - INFO - 
-neck.fpn_convs.1.conv.weight - torch.Size([256, 256, 3, 3]): 
-XavierInit: gain=1, distribution=uniform, bias=0 
- 
-2023-02-09 14:52:10,896 - mmcv - INFO - 
-neck.fpn_convs.1.conv.bias - torch.Size([256]): 
-The value is the same before and after calling `init_weights` of MaskRCNN  
- 
-2023-02-09 14:52:10,896 - mmcv - INFO - 
-neck.fpn_convs.2.conv.weight - torch.Size([256, 256, 3, 3]): 
-XavierInit: gain=1, distribution=uniform, bias=0 
- 
-2023-02-09 14:52:10,896 - mmcv - INFO - 
-neck.fpn_convs.2.conv.bias - torch.Size([256]): 
-The value is the same before and after calling `init_weights` of MaskRCNN  
- 
-2023-02-09 14:52:10,896 - mmcv - INFO - 
-neck.fpn_convs.3.conv.weight - torch.Size([256, 256, 3, 3]): 
-XavierInit: gain=1, distribution=uniform, bias=0 
- 
-2023-02-09 14:52:10,896 - mmcv - INFO - 
-neck.fpn_convs.3.conv.bias - torch.Size([256]): 
-The value is the same before and after calling `init_weights` of MaskRCNN  
- 
-2023-02-09 14:52:10,896 - mmcv - INFO - 
-rpn_head.rpn_conv.weight - torch.Size([256, 256, 3, 3]): 
-NormalInit: mean=0, std=0.01, bias=0 
- 
-2023-02-09 14:52:10,897 - mmcv - INFO - 
-rpn_head.rpn_conv.bias - torch.Size([256]): 
-NormalInit: mean=0, std=0.01, bias=0 
- 
-2023-02-09 14:52:10,897 - mmcv - INFO - 
-rpn_head.rpn_cls.weight - torch.Size([3, 256, 1, 1]): 
-NormalInit: mean=0, std=0.01, bias=0 
- 
-2023-02-09 14:52:10,897 - mmcv - INFO - 
-rpn_head.rpn_cls.bias - torch.Size([3]): 
-NormalInit: mean=0, std=0.01, bias=0 
- 
-2023-02-09 14:52:10,897 - mmcv - INFO - 
-rpn_head.rpn_reg.weight - torch.Size([12, 256, 1, 1]): 
-NormalInit: mean=0, std=0.01, bias=0 
- 
-2023-02-09 14:52:10,897 - mmcv - INFO - 
-rpn_head.rpn_reg.bias - torch.Size([12]): 
-NormalInit: mean=0, std=0.01, bias=0 
- 
-2023-02-09 14:52:10,897 - mmcv - INFO - 
-roi_head.bbox_head.fc_cls.weight - torch.Size([2, 1024]): 
-NormalInit: mean=0, std=0.01, bias=0 
- 
-2023-02-09 14:52:10,897 - mmcv - INFO - 
-roi_head.bbox_head.fc_cls.bias - torch.Size([2]): 
-NormalInit: mean=0, std=0.01, bias=0 
- 
-2023-02-09 14:52:10,897 - mmcv - INFO - 
-roi_head.bbox_head.fc_reg.weight - torch.Size([4, 1024]): 
-NormalInit: mean=0, std=0.001, bias=0 
- 
-2023-02-09 14:52:10,897 - mmcv - INFO - 
-roi_head.bbox_head.fc_reg.bias - torch.Size([4]): 
-NormalInit: mean=0, std=0.001, bias=0 
- 
-2023-02-09 14:52:10,897 - mmcv - INFO - 
-roi_head.bbox_head.shared_fcs.0.weight - torch.Size([1024, 12544]): 
-XavierInit: gain=1, distribution=uniform, bias=0 
- 
-2023-02-09 14:52:10,897 - mmcv - INFO - 
-roi_head.bbox_head.shared_fcs.0.bias - torch.Size([1024]): 
-XavierInit: gain=1, distribution=uniform, bias=0 
- 
-2023-02-09 14:52:10,897 - mmcv - INFO - 
-roi_head.bbox_head.shared_fcs.1.weight - torch.Size([1024, 1024]): 
-XavierInit: gain=1, distribution=uniform, bias=0 
- 
-2023-02-09 14:52:10,897 - mmcv - INFO - 
-roi_head.bbox_head.shared_fcs.1.bias - torch.Size([1024]): 
-XavierInit: gain=1, distribution=uniform, bias=0 
- 
-2023-02-09 14:52:10,897 - mmcv - INFO - 
-roi_head.mask_head.convs.0.conv.weight - torch.Size([256, 256, 3, 3]): 
-Initialized by user-defined `init_weights` in ConvModule  
- 
-2023-02-09 14:52:10,897 - mmcv - INFO - 
-roi_head.mask_head.convs.0.conv.bias - torch.Size([256]): 
-The value is the same before and after calling `init_weights` of MaskRCNN  
- 
-2023-02-09 14:52:10,897 - mmcv - INFO - 
-roi_head.mask_head.convs.1.conv.weight - torch.Size([256, 256, 3, 3]): 
-Initialized by user-defined `init_weights` in ConvModule  
- 
-2023-02-09 14:52:10,897 - mmcv - INFO - 
-roi_head.mask_head.convs.1.conv.bias - torch.Size([256]): 
-The value is the same before and after calling `init_weights` of MaskRCNN  
- 
-2023-02-09 14:52:10,897 - mmcv - INFO - 
-roi_head.mask_head.convs.2.conv.weight - torch.Size([256, 256, 3, 3]): 
-Initialized by user-defined `init_weights` in ConvModule  
- 
-2023-02-09 14:52:10,897 - mmcv - INFO - 
-roi_head.mask_head.convs.2.conv.bias - torch.Size([256]): 
-The value is the same before and after calling `init_weights` of MaskRCNN  
- 
-2023-02-09 14:52:10,897 - mmcv - INFO - 
-roi_head.mask_head.convs.3.conv.weight - torch.Size([256, 256, 3, 3]): 
-Initialized by user-defined `init_weights` in ConvModule  
- 
-2023-02-09 14:52:10,897 - mmcv - INFO - 
-roi_head.mask_head.convs.3.conv.bias - torch.Size([256]): 
-The value is the same before and after calling `init_weights` of MaskRCNN  
- 
-2023-02-09 14:52:10,897 - mmcv - INFO - 
-roi_head.mask_head.upsample.weight - torch.Size([256, 256, 2, 2]): 
-Initialized by user-defined `init_weights` in FCNMaskHead  
- 
-2023-02-09 14:52:10,897 - mmcv - INFO - 
-roi_head.mask_head.upsample.bias - torch.Size([256]): 
-Initialized by user-defined `init_weights` in FCNMaskHead  
- 
-2023-02-09 14:52:10,897 - mmcv - INFO - 
-roi_head.mask_head.conv_logits.weight - torch.Size([1, 256, 1, 1]): 
-Initialized by user-defined `init_weights` in FCNMaskHead  
- 
-2023-02-09 14:52:10,897 - mmcv - INFO - 
-roi_head.mask_head.conv_logits.bias - torch.Size([1]): 
-Initialized by user-defined `init_weights` in FCNMaskHead  
- 
-loading annotations into memory...
-Done (t=0.01s)
-creating index...
-index created!
-loading annotations into memory...
-Done (t=0.00s)
-creating index...
-index created!
-fatal: Not a git repository (or any parent up to mount point /data)
-Stopping at filesystem boundary (GIT_DISCOVERY_ACROSS_FILESYSTEM not set).
-2023-02-09 14:52:17,570 - mmdet - INFO - Automatic scaling of learning rate (LR) has been disabled.
-loading annotations into memory...
-Done (t=0.00s)
-creating index...
-index created!
-2023-02-09 14:52:17,580 - mmdet - INFO - load checkpoint from local path: ./checkpoints/mask_rcnn_r50_fpn_1x_coco_20200205-d4b0c5d6.pth
-2023-02-09 14:52:17,767 - mmdet - WARNING - The model and loaded state dict do not match exactly
-
-size mismatch for roi_head.bbox_head.fc_cls.weight: copying a param with shape torch.Size([81, 1024]) from checkpoint, the shape in current model is torch.Size([2, 1024]).
-size mismatch for roi_head.bbox_head.fc_cls.bias: copying a param with shape torch.Size([81]) from checkpoint, the shape in current model is torch.Size([2]).
-size mismatch for roi_head.bbox_head.fc_reg.weight: copying a param with shape torch.Size([320, 1024]) from checkpoint, the shape in current model is torch.Size([4, 1024]).
-size mismatch for roi_head.bbox_head.fc_reg.bias: copying a param with shape torch.Size([320]) from checkpoint, the shape in current model is torch.Size([4]).
-size mismatch for roi_head.mask_head.conv_logits.weight: copying a param with shape torch.Size([80, 256, 1, 1]) from checkpoint, the shape in current model is torch.Size([1, 256, 1, 1]).
-size mismatch for roi_head.mask_head.conv_logits.bias: copying a param with shape torch.Size([80]) from checkpoint, the shape in current model is torch.Size([1]).
-2023-02-09 14:52:17,769 - mmdet - INFO - Start running, host: scz0bdh@g0016, work_dir: /data/run01/scz0bdh/mmlab_homework/Balloon/work_dir
-2023-02-09 14:52:17,770 - mmdet - INFO - Hooks will be executed in the following order:
-before_run:
-(VERY_HIGH   ) CosineAnnealingLrUpdaterHook       
-(NORMAL      ) CheckpointHook                     
-(LOW         ) EvalHook                           
-(VERY_LOW    ) TextLoggerHook                     
- -------------------- 
-before_train_epoch:
-(VERY_HIGH   ) CosineAnnealingLrUpdaterHook       
-(NORMAL      ) NumClassCheckHook                  
-(LOW         ) IterTimerHook                      
-(LOW         ) EvalHook                           
-(VERY_LOW    ) TextLoggerHook                     
- -------------------- 
-before_train_iter:
-(VERY_HIGH   ) CosineAnnealingLrUpdaterHook       
-(LOW         ) IterTimerHook                      
-(LOW         ) EvalHook                           
- -------------------- 
-after_train_iter:
-(ABOVE_NORMAL) OptimizerHook                      
-(NORMAL      ) CheckpointHook                     
-(LOW         ) IterTimerHook                      
-(LOW         ) EvalHook                           
-(VERY_LOW    ) TextLoggerHook                     
- -------------------- 
-after_train_epoch:
-(NORMAL      ) CheckpointHook                     
-(LOW         ) EvalHook                           
-(VERY_LOW    ) TextLoggerHook                     
- -------------------- 
-before_val_epoch:
-(NORMAL      ) NumClassCheckHook                  
-(LOW         ) IterTimerHook                      
-(VERY_LOW    ) TextLoggerHook                     
- -------------------- 
-before_val_iter:
-(LOW         ) IterTimerHook                      
- -------------------- 
-after_val_iter:
-(LOW         ) IterTimerHook                      
- -------------------- 
-after_val_epoch:
-(VERY_LOW    ) TextLoggerHook                     
- -------------------- 
-after_run:
-(VERY_LOW    ) TextLoggerHook                     
- -------------------- 
-2023-02-09 14:52:17,770 - mmdet - INFO - workflow: [('train', 2), ('val', 1)], max: 20 epochs
-2023-02-09 14:52:17,770 - mmdet - INFO - Checkpoints will be saved to /data/run01/scz0bdh/mmlab_homework/Balloon/work_dir by HardDiskBackend.
-2023-02-09 14:52:35,246 - mmdet - INFO - Saving checkpoint at 1 epochs
-[                                                  ] 0/13, elapsed: 0s, ETA:[>>                                ] 1/13, 2.5 task/s, elapsed: 0s, ETA:     5s[>>>>>                             ] 2/13, 2.7 task/s, elapsed: 1s, ETA:     4s[>>>>>>>                           ] 3/13, 2.3 task/s, elapsed: 1s, ETA:     4s[>>>>>>>>>>                        ] 4/13, 1.9 task/s, elapsed: 2s, ETA:     5s[>>>>>>>>>>>>>                     ] 5/13, 2.2 task/s, elapsed: 2s, ETA:     4s[>>>>>>>>>>>>>>>                   ] 6/13, 2.4 task/s, elapsed: 2s, ETA:     3s[>>>>>>>>>>>>>>>>>>                ] 7/13, 2.7 task/s, elapsed: 3s, ETA:     2s[>>>>>>>>>>>>>>>>>>>>              ] 8/13, 3.0 task/s, elapsed: 3s, ETA:     2s[>>>>>>>>>>>>>>>>>>>>>>>           ] 9/13, 3.3 task/s, elapsed: 3s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>>>>>>        ] 10/13, 3.5 task/s, elapsed: 3s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>>>>>>>>      ] 11/13, 3.7 task/s, elapsed: 3s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>   ] 12/13, 3.8 task/s, elapsed: 3s, ETA:     0s[>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>] 13/13, 3.9 task/s, elapsed: 3s, ETA:     0s2023-02-09 14:52:39,302 - mmdet - INFO - Evaluating bbox...
-Loading and preparing results...
-DONE (t=0.00s)
-creating index...
-index created!
-Running per image evaluation...
-Evaluate annotation type *bbox*
-DONE (t=0.05s).
-Accumulating evaluation results...
-DONE (t=0.06s).
-2023-02-09 14:52:39,422 - mmdet - INFO - 
- Average Precision  (AP) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.307
- Average Precision  (AP) @[ IoU=0.50      | area=   all | maxDets=1000 ] = 0.565
- Average Precision  (AP) @[ IoU=0.75      | area=   all | maxDets=1000 ] = 0.351
- Average Precision  (AP) @[ IoU=0.50:0.95 | area= small | maxDets=1000 ] = 0.000
- Average Precision  (AP) @[ IoU=0.50:0.95 | area=medium | maxDets=1000 ] = 0.126
- Average Precision  (AP) @[ IoU=0.50:0.95 | area= large | maxDets=1000 ] = 0.386
- Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.476
- Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=300 ] = 0.476
- Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=1000 ] = 0.476
- Average Recall     (AR) @[ IoU=0.50:0.95 | area= small | maxDets=1000 ] = 0.000
- Average Recall     (AR) @[ IoU=0.50:0.95 | area=medium | maxDets=1000 ] = 0.483
- Average Recall     (AR) @[ IoU=0.50:0.95 | area= large | maxDets=1000 ] = 0.500
-
-2023-02-09 14:52:39,422 - mmdet - INFO - Evaluating segm...
-/data/run01/scz0bdh/mmlab_hub/mmdetection-master/mmdet/datasets/coco.py:470: UserWarning: The key "bbox" is deleted for more accurate mask AP of small/medium/large instances since v2.12.0. This does not change the overall mAP calculation.
-  warnings.warn(
-Loading and preparing results...
-DONE (t=0.01s)
-creating index...
-index created!
-Running per image evaluation...
-Evaluate annotation type *segm*
-DONE (t=0.07s).
-Accumulating evaluation results...
-DONE (t=0.01s).
-2023-02-09 14:52:39,527 - mmdet - INFO - 
- Average Precision  (AP) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.445
- Average Precision  (AP) @[ IoU=0.50      | area=   all | maxDets=1000 ] = 0.571
- Average Precision  (AP) @[ IoU=0.75      | area=   all | maxDets=1000 ] = 0.475
- Average Precision  (AP) @[ IoU=0.50:0.95 | area= small | maxDets=1000 ] = 0.000
- Average Precision  (AP) @[ IoU=0.50:0.95 | area=medium | maxDets=1000 ] = 0.125
- Average Precision  (AP) @[ IoU=0.50:0.95 | area= large | maxDets=1000 ] = 0.596
- Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.648
- Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=300 ] = 0.648
- Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=1000 ] = 0.648
- Average Recall     (AR) @[ IoU=0.50:0.95 | area= small | maxDets=1000 ] = 0.000
- Average Recall     (AR) @[ IoU=0.50:0.95 | area=medium | maxDets=1000 ] = 0.567
- Average Recall     (AR) @[ IoU=0.50:0.95 | area= large | maxDets=1000 ] = 0.711
-
-2023-02-09 14:52:39,528 - mmdet - INFO - Exp name: config.py
-2023-02-09 14:52:39,528 - mmdet - INFO - Epoch(val) [1][13]	bbox_mAP: 0.3066, bbox_mAP_50: 0.5648, bbox_mAP_75: 0.3506, bbox_mAP_s: 0.0000, bbox_mAP_m: 0.1260, bbox_mAP_l: 0.3858, bbox_mAP_copypaste: 0.3066 0.5648 0.3506 0.0000 0.1260 0.3858, segm_mAP: 0.4450, segm_mAP_50: 0.5713, segm_mAP_75: 0.4751, segm_mAP_s: 0.0000, segm_mAP_m: 0.1253, segm_mAP_l: 0.5960, segm_mAP_copypaste: 0.4450 0.5713 0.4751 0.0000 0.1253 0.5960
-2023-02-09 14:52:48,329 - mmdet - INFO - Saving checkpoint at 2 epochs
-[                                                  ] 0/13, elapsed: 0s, ETA:[>>                                ] 1/13, 3.3 task/s, elapsed: 0s, ETA:     4s[>>>>>                             ] 2/13, 4.3 task/s, elapsed: 0s, ETA:     3s[>>>>>>>                           ] 3/13, 4.1 task/s, elapsed: 1s, ETA:     2s[>>>>>>>>>>                        ] 4/13, 3.5 task/s, elapsed: 1s, ETA:     3s[>>>>>>>>>>>>>                     ] 5/13, 4.0 task/s, elapsed: 1s, ETA:     2s[>>>>>>>>>>>>>>>                   ] 6/13, 4.6 task/s, elapsed: 1s, ETA:     2s[>>>>>>>>>>>>>>>>>>                ] 7/13, 5.1 task/s, elapsed: 1s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>              ] 8/13, 5.7 task/s, elapsed: 1s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>>>>           ] 9/13, 6.2 task/s, elapsed: 1s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>>>>>>        ] 10/13, 6.6 task/s, elapsed: 2s, ETA:     0s[>>>>>>>>>>>>>>>>>>>>>>>>>>>      ] 11/13, 7.1 task/s, elapsed: 2s, ETA:     0s[>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>   ] 12/13, 7.5 task/s, elapsed: 2s, ETA:     0s[>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>] 13/13, 7.8 task/s, elapsed: 2s, ETA:     0s2023-02-09 14:52:50,655 - mmdet - INFO - Evaluating bbox...
-Loading and preparing results...
-DONE (t=0.00s)
-creating index...
-index created!
-Running per image evaluation...
-Evaluate annotation type *bbox*
-DONE (t=0.02s).
-Accumulating evaluation results...
-DONE (t=0.01s).
-2023-02-09 14:52:50,679 - mmdet - INFO - 
- Average Precision  (AP) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.523
- Average Precision  (AP) @[ IoU=0.50      | area=   all | maxDets=1000 ] = 0.744
- Average Precision  (AP) @[ IoU=0.75      | area=   all | maxDets=1000 ] = 0.610
- Average Precision  (AP) @[ IoU=0.50:0.95 | area= small | maxDets=1000 ] = 0.000
- Average Precision  (AP) @[ IoU=0.50:0.95 | area=medium | maxDets=1000 ] = 0.376
- Average Precision  (AP) @[ IoU=0.50:0.95 | area= large | maxDets=1000 ] = 0.591
- Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.572
- Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=300 ] = 0.572
- Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=1000 ] = 0.572
- Average Recall     (AR) @[ IoU=0.50:0.95 | area= small | maxDets=1000 ] = 0.000
- Average Recall     (AR) @[ IoU=0.50:0.95 | area=medium | maxDets=1000 ] = 0.442
- Average Recall     (AR) @[ IoU=0.50:0.95 | area= large | maxDets=1000 ] = 0.647
-
-2023-02-09 14:52:50,679 - mmdet - INFO - Evaluating segm...
-/data/run01/scz0bdh/mmlab_hub/mmdetection-master/mmdet/datasets/coco.py:470: UserWarning: The key "bbox" is deleted for more accurate mask AP of small/medium/large instances since v2.12.0. This does not change the overall mAP calculation.
-  warnings.warn(
-Loading and preparing results...
-DONE (t=0.00s)
-creating index...
-index created!
-Running per image evaluation...
-Evaluate annotation type *segm*
-DONE (t=0.02s).
-Accumulating evaluation results...
-DONE (t=0.01s).
-2023-02-09 14:52:50,708 - mmdet - INFO - 
- Average Precision  (AP) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.635
- Average Precision  (AP) @[ IoU=0.50      | area=   all | maxDets=1000 ] = 0.744
- Average Precision  (AP) @[ IoU=0.75      | area=   all | maxDets=1000 ] = 0.722
- Average Precision  (AP) @[ IoU=0.50:0.95 | area= small | maxDets=1000 ] = 0.000
- Average Precision  (AP) @[ IoU=0.50:0.95 | area=medium | maxDets=1000 ] = 0.478
- Average Precision  (AP) @[ IoU=0.50:0.95 | area= large | maxDets=1000 ] = 0.718
- Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.674
- Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=300 ] = 0.674
- Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=1000 ] = 0.674
- Average Recall     (AR) @[ IoU=0.50:0.95 | area= small | maxDets=1000 ] = 0.000
- Average Recall     (AR) @[ IoU=0.50:0.95 | area=medium | maxDets=1000 ] = 0.525
- Average Recall     (AR) @[ IoU=0.50:0.95 | area= large | maxDets=1000 ] = 0.761
-
-2023-02-09 14:52:50,708 - mmdet - INFO - Exp name: config.py
-2023-02-09 14:52:50,708 - mmdet - INFO - Epoch(val) [2][13]	bbox_mAP: 0.5233, bbox_mAP_50: 0.7443, bbox_mAP_75: 0.6102, bbox_mAP_s: 0.0000, bbox_mAP_m: 0.3762, bbox_mAP_l: 0.5915, bbox_mAP_copypaste: 0.5233 0.7443 0.6102 0.0000 0.3762 0.5915, segm_mAP: 0.6345, segm_mAP_50: 0.7443, segm_mAP_75: 0.7223, segm_mAP_s: 0.0000, segm_mAP_m: 0.4775, segm_mAP_l: 0.7182, segm_mAP_copypaste: 0.6345 0.7443 0.7223 0.0000 0.4775 0.7182
-2023-02-09 14:52:53,906 - mmdet - INFO - Exp name: config.py
-2023-02-09 14:52:53,906 - mmdet - INFO - Epoch(val) [2][7]	loss_rpn_cls_val: 0.0258, loss_rpn_bbox_val: 0.0201, loss_cls_val: 0.1678, acc_val: 93.4989, loss_bbox_val: 0.2020, loss_mask_val: 0.1346, loss_val: 0.5503
-2023-02-09 14:53:02,493 - mmdet - INFO - Saving checkpoint at 3 epochs
-[                                                  ] 0/13, elapsed: 0s, ETA:[>>                                ] 1/13, 2.3 task/s, elapsed: 0s, ETA:     5s[>>>>>                             ] 2/13, 2.9 task/s, elapsed: 1s, ETA:     4s[>>>>>>>                           ] 3/13, 2.9 task/s, elapsed: 1s, ETA:     4s[>>>>>>>>>>                        ] 4/13, 2.7 task/s, elapsed: 1s, ETA:     3s[>>>>>>>>>>>>>                     ] 5/13, 2.8 task/s, elapsed: 2s, ETA:     3s[>>>>>>>>>>>>>>>                   ] 6/13, 3.2 task/s, elapsed: 2s, ETA:     2s[>>>>>>>>>>>>>>>>>>                ] 7/13, 3.5 task/s, elapsed: 2s, ETA:     2s[>>>>>>>>>>>>>>>>>>>>              ] 8/13, 3.8 task/s, elapsed: 2s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>>>>           ] 9/13, 4.2 task/s, elapsed: 2s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>>>>>>        ] 10/13, 4.5 task/s, elapsed: 2s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>>>>>>>>      ] 11/13, 4.8 task/s, elapsed: 2s, ETA:     0s[>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>   ] 12/13, 5.0 task/s, elapsed: 2s, ETA:     0s[>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>] 13/13, 5.2 task/s, elapsed: 2s, ETA:     0s2023-02-09 14:53:05,689 - mmdet - INFO - Evaluating bbox...
-Loading and preparing results...
-DONE (t=0.00s)
-creating index...
-index created!
-Running per image evaluation...
-Evaluate annotation type *bbox*
-DONE (t=0.03s).
-Accumulating evaluation results...
-DONE (t=0.01s).
-2023-02-09 14:53:05,731 - mmdet - INFO - 
- Average Precision  (AP) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.498
- Average Precision  (AP) @[ IoU=0.50      | area=   all | maxDets=1000 ] = 0.680
- Average Precision  (AP) @[ IoU=0.75      | area=   all | maxDets=1000 ] = 0.593
- Average Precision  (AP) @[ IoU=0.50:0.95 | area= small | maxDets=1000 ] = 0.050
- Average Precision  (AP) @[ IoU=0.50:0.95 | area=medium | maxDets=1000 ] = 0.314
- Average Precision  (AP) @[ IoU=0.50:0.95 | area= large | maxDets=1000 ] = 0.578
- Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.636
- Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=300 ] = 0.636
- Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=1000 ] = 0.636
- Average Recall     (AR) @[ IoU=0.50:0.95 | area= small | maxDets=1000 ] = 0.050
- Average Recall     (AR) @[ IoU=0.50:0.95 | area=medium | maxDets=1000 ] = 0.575
- Average Recall     (AR) @[ IoU=0.50:0.95 | area= large | maxDets=1000 ] = 0.689
-
-2023-02-09 14:53:05,732 - mmdet - INFO - Evaluating segm...
-/data/run01/scz0bdh/mmlab_hub/mmdetection-master/mmdet/datasets/coco.py:470: UserWarning: The key "bbox" is deleted for more accurate mask AP of small/medium/large instances since v2.12.0. This does not change the overall mAP calculation.
-  warnings.warn(
-Loading and preparing results...
-DONE (t=0.01s)
-creating index...
-index created!
-Running per image evaluation...
-Evaluate annotation type *segm*
-DONE (t=0.04s).
-Accumulating evaluation results...
-DONE (t=0.01s).
-2023-02-09 14:53:05,793 - mmdet - INFO - 
- Average Precision  (AP) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.602
- Average Precision  (AP) @[ IoU=0.50      | area=   all | maxDets=1000 ] = 0.678
- Average Precision  (AP) @[ IoU=0.75      | area=   all | maxDets=1000 ] = 0.661
- Average Precision  (AP) @[ IoU=0.50:0.95 | area= small | maxDets=1000 ] = 0.000
- Average Precision  (AP) @[ IoU=0.50:0.95 | area=medium | maxDets=1000 ] = 0.244
- Average Precision  (AP) @[ IoU=0.50:0.95 | area= large | maxDets=1000 ] = 0.726
- Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.744
- Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=300 ] = 0.744
- Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=1000 ] = 0.744
- Average Recall     (AR) @[ IoU=0.50:0.95 | area= small | maxDets=1000 ] = 0.000
- Average Recall     (AR) @[ IoU=0.50:0.95 | area=medium | maxDets=1000 ] = 0.600
- Average Recall     (AR) @[ IoU=0.50:0.95 | area= large | maxDets=1000 ] = 0.833
-
-2023-02-09 14:53:05,793 - mmdet - INFO - Exp name: config.py
-2023-02-09 14:53:05,793 - mmdet - INFO - Epoch(val) [3][13]	bbox_mAP: 0.4984, bbox_mAP_50: 0.6802, bbox_mAP_75: 0.5927, bbox_mAP_s: 0.0505, bbox_mAP_m: 0.3137, bbox_mAP_l: 0.5780, bbox_mAP_copypaste: 0.4984 0.6802 0.5927 0.0505 0.3137 0.5780, segm_mAP: 0.6016, segm_mAP_50: 0.6777, segm_mAP_75: 0.6615, segm_mAP_s: 0.0000, segm_mAP_m: 0.2436, segm_mAP_l: 0.7255, segm_mAP_copypaste: 0.6016 0.6777 0.6615 0.0000 0.2436 0.7255
-2023-02-09 14:53:14,450 - mmdet - INFO - Saving checkpoint at 4 epochs
-[                                                  ] 0/13, elapsed: 0s, ETA:[>>                                ] 1/13, 2.3 task/s, elapsed: 0s, ETA:     5s[>>>>>                             ] 2/13, 3.7 task/s, elapsed: 1s, ETA:     3s[>>>>>>>                           ] 3/13, 4.5 task/s, elapsed: 1s, ETA:     2s[>>>>>>>>>>                        ] 4/13, 4.7 task/s, elapsed: 1s, ETA:     2s[>>>>>>>>>>>>>                     ] 5/13, 5.3 task/s, elapsed: 1s, ETA:     2s[>>>>>>>>>>>>>>>                   ] 6/13, 6.0 task/s, elapsed: 1s, ETA:     1s[>>>>>>>>>>>>>>>>>>                ] 7/13, 6.7 task/s, elapsed: 1s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>              ] 8/13, 7.3 task/s, elapsed: 1s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>>>>           ] 9/13, 8.0 task/s, elapsed: 1s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>>>>>>        ] 10/13, 8.4 task/s, elapsed: 1s, ETA:     0s[>>>>>>>>>>>>>>>>>>>>>>>>>>>      ] 11/13, 9.0 task/s, elapsed: 1s, ETA:     0s[>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>   ] 12/13, 9.5 task/s, elapsed: 1s, ETA:     0s[>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>] 13/13, 9.9 task/s, elapsed: 1s, ETA:     0s2023-02-09 14:53:16,443 - mmdet - INFO - Evaluating bbox...
-Loading and preparing results...
-DONE (t=0.00s)
-creating index...
-index created!
-Running per image evaluation...
-Evaluate annotation type *bbox*
-DONE (t=0.01s).
-Accumulating evaluation results...
-DONE (t=0.01s).
-2023-02-09 14:53:16,462 - mmdet - INFO - 
- Average Precision  (AP) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.548
- Average Precision  (AP) @[ IoU=0.50      | area=   all | maxDets=1000 ] = 0.728
- Average Precision  (AP) @[ IoU=0.75      | area=   all | maxDets=1000 ] = 0.695
- Average Precision  (AP) @[ IoU=0.50:0.95 | area= small | maxDets=1000 ] = 0.000
- Average Precision  (AP) @[ IoU=0.50:0.95 | area=medium | maxDets=1000 ] = 0.389
- Average Precision  (AP) @[ IoU=0.50:0.95 | area= large | maxDets=1000 ] = 0.624
- Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.608
- Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=300 ] = 0.608
- Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=1000 ] = 0.608
- Average Recall     (AR) @[ IoU=0.50:0.95 | area= small | maxDets=1000 ] = 0.000
- Average Recall     (AR) @[ IoU=0.50:0.95 | area=medium | maxDets=1000 ] = 0.500
- Average Recall     (AR) @[ IoU=0.50:0.95 | area= large | maxDets=1000 ] = 0.678
-
-2023-02-09 14:53:16,462 - mmdet - INFO - Evaluating segm...
-/data/run01/scz0bdh/mmlab_hub/mmdetection-master/mmdet/datasets/coco.py:470: UserWarning: The key "bbox" is deleted for more accurate mask AP of small/medium/large instances since v2.12.0. This does not change the overall mAP calculation.
-  warnings.warn(
-Loading and preparing results...
-DONE (t=0.00s)
-creating index...
-index created!
-Running per image evaluation...
-Evaluate annotation type *segm*
-DONE (t=0.01s).
-Accumulating evaluation results...
-DONE (t=0.01s).
-2023-02-09 14:53:16,484 - mmdet - INFO - 
- Average Precision  (AP) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.630
- Average Precision  (AP) @[ IoU=0.50      | area=   all | maxDets=1000 ] = 0.744
- Average Precision  (AP) @[ IoU=0.75      | area=   all | maxDets=1000 ] = 0.717
- Average Precision  (AP) @[ IoU=0.50:0.95 | area= small | maxDets=1000 ] = 0.000
- Average Precision  (AP) @[ IoU=0.50:0.95 | area=medium | maxDets=1000 ] = 0.421
- Average Precision  (AP) @[ IoU=0.50:0.95 | area= large | maxDets=1000 ] = 0.727
- Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.694
- Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=300 ] = 0.694
- Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=1000 ] = 0.694
- Average Recall     (AR) @[ IoU=0.50:0.95 | area= small | maxDets=1000 ] = 0.000
- Average Recall     (AR) @[ IoU=0.50:0.95 | area=medium | maxDets=1000 ] = 0.550
- Average Recall     (AR) @[ IoU=0.50:0.95 | area= large | maxDets=1000 ] = 0.781
-
-2023-02-09 14:53:16,495 - mmdet - INFO - Exp name: config.py
-2023-02-09 14:53:16,496 - mmdet - INFO - Epoch(val) [4][13]	bbox_mAP: 0.5477, bbox_mAP_50: 0.7275, bbox_mAP_75: 0.6955, bbox_mAP_s: 0.0000, bbox_mAP_m: 0.3895, bbox_mAP_l: 0.6245, bbox_mAP_copypaste: 0.5477 0.7275 0.6955 0.0000 0.3895 0.6245, segm_mAP: 0.6302, segm_mAP_50: 0.7442, segm_mAP_75: 0.7166, segm_mAP_s: 0.0000, segm_mAP_m: 0.4212, segm_mAP_l: 0.7274, segm_mAP_copypaste: 0.6302 0.7442 0.7166 0.0000 0.4212 0.7274
-2023-02-09 14:53:19,802 - mmdet - INFO - Exp name: config.py
-2023-02-09 14:53:19,802 - mmdet - INFO - Epoch(val) [4][7]	loss_rpn_cls_val: 0.0438, loss_rpn_bbox_val: 0.0202, loss_cls_val: 0.1775, acc_val: 93.7221, loss_bbox_val: 0.1934, loss_mask_val: 0.1178, loss_val: 0.5528
-2023-02-09 14:53:28,550 - mmdet - INFO - Saving checkpoint at 5 epochs
-[                                                  ] 0/13, elapsed: 0s, ETA:[>>                                ] 1/13, 3.0 task/s, elapsed: 0s, ETA:     4s[>>>>>                             ] 2/13, 3.5 task/s, elapsed: 1s, ETA:     3s[>>>>>>>                           ] 3/13, 4.0 task/s, elapsed: 1s, ETA:     3s[>>>>>>>>>>                        ] 4/13, 3.6 task/s, elapsed: 1s, ETA:     2s[>>>>>>>>>>>>>                     ] 5/13, 4.0 task/s, elapsed: 1s, ETA:     2s[>>>>>>>>>>>>>>>                   ] 6/13, 4.5 task/s, elapsed: 1s, ETA:     2s[>>>>>>>>>>>>>>>>>>                ] 7/13, 5.0 task/s, elapsed: 1s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>              ] 8/13, 5.5 task/s, elapsed: 1s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>>>>           ] 9/13, 6.0 task/s, elapsed: 2s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>>>>>>        ] 10/13, 6.3 task/s, elapsed: 2s, ETA:     0s[>>>>>>>>>>>>>>>>>>>>>>>>>>>      ] 11/13, 6.8 task/s, elapsed: 2s, ETA:     0s[>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>   ] 12/13, 7.1 task/s, elapsed: 2s, ETA:     0s[>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>] 13/13, 7.5 task/s, elapsed: 2s, ETA:     0s2023-02-09 14:53:30,959 - mmdet - INFO - Evaluating bbox...
-Loading and preparing results...
-DONE (t=0.00s)
-creating index...
-index created!
-Running per image evaluation...
-Evaluate annotation type *bbox*
-DONE (t=0.02s).
-Accumulating evaluation results...
-DONE (t=0.01s).
-2023-02-09 14:53:30,987 - mmdet - INFO - 
- Average Precision  (AP) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.619
- Average Precision  (AP) @[ IoU=0.50      | area=   all | maxDets=1000 ] = 0.811
- Average Precision  (AP) @[ IoU=0.75      | area=   all | maxDets=1000 ] = 0.696
- Average Precision  (AP) @[ IoU=0.50:0.95 | area= small | maxDets=1000 ] = 0.063
- Average Precision  (AP) @[ IoU=0.50:0.95 | area=medium | maxDets=1000 ] = 0.392
- Average Precision  (AP) @[ IoU=0.50:0.95 | area= large | maxDets=1000 ] = 0.697
- Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.722
- Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=300 ] = 0.722
- Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=1000 ] = 0.722
- Average Recall     (AR) @[ IoU=0.50:0.95 | area= small | maxDets=1000 ] = 0.200
- Average Recall     (AR) @[ IoU=0.50:0.95 | area=medium | maxDets=1000 ] = 0.658
- Average Recall     (AR) @[ IoU=0.50:0.95 | area= large | maxDets=1000 ] = 0.772
-
-2023-02-09 14:53:30,988 - mmdet - INFO - Evaluating segm...
-/data/run01/scz0bdh/mmlab_hub/mmdetection-master/mmdet/datasets/coco.py:470: UserWarning: The key "bbox" is deleted for more accurate mask AP of small/medium/large instances since v2.12.0. This does not change the overall mAP calculation.
-  warnings.warn(
-Loading and preparing results...
-DONE (t=0.00s)
-creating index...
-index created!
-Running per image evaluation...
-Evaluate annotation type *segm*
-DONE (t=0.02s).
-Accumulating evaluation results...
-DONE (t=0.01s).
-2023-02-09 14:53:31,023 - mmdet - INFO - 
- Average Precision  (AP) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.680
- Average Precision  (AP) @[ IoU=0.50      | area=   all | maxDets=1000 ] = 0.813
- Average Precision  (AP) @[ IoU=0.75      | area=   all | maxDets=1000 ] = 0.727
- Average Precision  (AP) @[ IoU=0.50:0.95 | area= small | maxDets=1000 ] = 0.026
- Average Precision  (AP) @[ IoU=0.50:0.95 | area=medium | maxDets=1000 ] = 0.392
- Average Precision  (AP) @[ IoU=0.50:0.95 | area= large | maxDets=1000 ] = 0.780
- Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.774
- Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=300 ] = 0.774
- Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=1000 ] = 0.774
- Average Recall     (AR) @[ IoU=0.50:0.95 | area= small | maxDets=1000 ] = 0.250
- Average Recall     (AR) @[ IoU=0.50:0.95 | area=medium | maxDets=1000 ] = 0.650
- Average Recall     (AR) @[ IoU=0.50:0.95 | area= large | maxDets=1000 ] = 0.844
-
-2023-02-09 14:53:31,024 - mmdet - INFO - Exp name: config.py
-2023-02-09 14:53:31,024 - mmdet - INFO - Epoch(val) [5][13]	bbox_mAP: 0.6188, bbox_mAP_50: 0.8115, bbox_mAP_75: 0.6957, bbox_mAP_s: 0.0631, bbox_mAP_m: 0.3921, bbox_mAP_l: 0.6971, bbox_mAP_copypaste: 0.6188 0.8115 0.6957 0.0631 0.3921 0.6971, segm_mAP: 0.6800, segm_mAP_50: 0.8132, segm_mAP_75: 0.7267, segm_mAP_s: 0.0256, segm_mAP_m: 0.3920, segm_mAP_l: 0.7802, segm_mAP_copypaste: 0.6800 0.8132 0.7267 0.0256 0.3920 0.7802
-2023-02-09 14:53:39,589 - mmdet - INFO - Saving checkpoint at 6 epochs
-[                                                  ] 0/13, elapsed: 0s, ETA:[>>                                ] 1/13, 3.9 task/s, elapsed: 0s, ETA:     3s[>>>>>                             ] 2/13, 5.2 task/s, elapsed: 0s, ETA:     2s[>>>>>>>                           ] 3/13, 5.5 task/s, elapsed: 1s, ETA:     2s[>>>>>>>>>>                        ] 4/13, 5.0 task/s, elapsed: 1s, ETA:     2s[>>>>>>>>>>>>>                     ] 5/13, 5.4 task/s, elapsed: 1s, ETA:     1s[>>>>>>>>>>>>>>>                   ] 6/13, 6.1 task/s, elapsed: 1s, ETA:     1s[>>>>>>>>>>>>>>>>>>                ] 7/13, 6.8 task/s, elapsed: 1s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>              ] 8/13, 7.5 task/s, elapsed: 1s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>>>>           ] 9/13, 8.1 task/s, elapsed: 1s, ETA:     0s[>>>>>>>>>>>>>>>>>>>>>>>>>        ] 10/13, 8.6 task/s, elapsed: 1s, ETA:     0s[>>>>>>>>>>>>>>>>>>>>>>>>>>>      ] 11/13, 9.2 task/s, elapsed: 1s, ETA:     0s[>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>   ] 12/13, 9.6 task/s, elapsed: 1s, ETA:     0s[>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>] 13/13, 10.0 task/s, elapsed: 1s, ETA:     0s2023-02-09 14:53:41,550 - mmdet - INFO - Evaluating bbox...
-Loading and preparing results...
-DONE (t=0.00s)
-creating index...
-index created!
-Running per image evaluation...
-Evaluate annotation type *bbox*
-DONE (t=0.01s).
-Accumulating evaluation results...
-DONE (t=0.01s).
-2023-02-09 14:53:41,570 - mmdet - INFO - 
- Average Precision  (AP) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.637
- Average Precision  (AP) @[ IoU=0.50      | area=   all | maxDets=1000 ] = 0.819
- Average Precision  (AP) @[ IoU=0.75      | area=   all | maxDets=1000 ] = 0.707
- Average Precision  (AP) @[ IoU=0.50:0.95 | area= small | maxDets=1000 ] = 0.000
- Average Precision  (AP) @[ IoU=0.50:0.95 | area=medium | maxDets=1000 ] = 0.450
- Average Precision  (AP) @[ IoU=0.50:0.95 | area= large | maxDets=1000 ] = 0.708
- Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.702
- Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=300 ] = 0.702
- Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=1000 ] = 0.702
- Average Recall     (AR) @[ IoU=0.50:0.95 | area= small | maxDets=1000 ] = 0.000
- Average Recall     (AR) @[ IoU=0.50:0.95 | area=medium | maxDets=1000 ] = 0.642
- Average Recall     (AR) @[ IoU=0.50:0.95 | area= large | maxDets=1000 ] = 0.761
-
-2023-02-09 14:53:41,570 - mmdet - INFO - Evaluating segm...
-/data/run01/scz0bdh/mmlab_hub/mmdetection-master/mmdet/datasets/coco.py:470: UserWarning: The key "bbox" is deleted for more accurate mask AP of small/medium/large instances since v2.12.0. This does not change the overall mAP calculation.
-  warnings.warn(
-Loading and preparing results...
-DONE (t=0.00s)
-creating index...
-index created!
-Running per image evaluation...
-Evaluate annotation type *segm*
-DONE (t=0.02s).
-Accumulating evaluation results...
-DONE (t=0.01s).
-2023-02-09 14:53:41,595 - mmdet - INFO - 
- Average Precision  (AP) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.705
- Average Precision  (AP) @[ IoU=0.50      | area=   all | maxDets=1000 ] = 0.805
- Average Precision  (AP) @[ IoU=0.75      | area=   all | maxDets=1000 ] = 0.787
- Average Precision  (AP) @[ IoU=0.50:0.95 | area= small | maxDets=1000 ] = 0.000
- Average Precision  (AP) @[ IoU=0.50:0.95 | area=medium | maxDets=1000 ] = 0.470
- Average Precision  (AP) @[ IoU=0.50:0.95 | area= large | maxDets=1000 ] = 0.788
- Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.760
- Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=300 ] = 0.760
- Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=1000 ] = 0.760
- Average Recall     (AR) @[ IoU=0.50:0.95 | area= small | maxDets=1000 ] = 0.000
- Average Recall     (AR) @[ IoU=0.50:0.95 | area=medium | maxDets=1000 ] = 0.675
- Average Recall     (AR) @[ IoU=0.50:0.95 | area= large | maxDets=1000 ] = 0.831
-
-2023-02-09 14:53:41,595 - mmdet - INFO - Exp name: config.py
-2023-02-09 14:53:41,595 - mmdet - INFO - Epoch(val) [6][13]	bbox_mAP: 0.6374, bbox_mAP_50: 0.8186, bbox_mAP_75: 0.7072, bbox_mAP_s: 0.0000, bbox_mAP_m: 0.4501, bbox_mAP_l: 0.7076, bbox_mAP_copypaste: 0.6374 0.8186 0.7072 0.0000 0.4501 0.7076, segm_mAP: 0.7052, segm_mAP_50: 0.8054, segm_mAP_75: 0.7868, segm_mAP_s: 0.0000, segm_mAP_m: 0.4704, segm_mAP_l: 0.7878, segm_mAP_copypaste: 0.7052 0.8054 0.7868 0.0000 0.4704 0.7878
-2023-02-09 14:53:44,753 - mmdet - INFO - Exp name: config.py
-2023-02-09 14:53:44,753 - mmdet - INFO - Epoch(val) [6][7]	loss_rpn_cls_val: 0.0175, loss_rpn_bbox_val: 0.0156, loss_cls_val: 0.1232, acc_val: 95.4799, loss_bbox_val: 0.2069, loss_mask_val: 0.1209, loss_val: 0.4841
-2023-02-09 14:53:53,419 - mmdet - INFO - Saving checkpoint at 7 epochs
-[                                                  ] 0/13, elapsed: 0s, ETA:[>>                                ] 1/13, 3.6 task/s, elapsed: 0s, ETA:     3s[>>>>>                             ] 2/13, 4.9 task/s, elapsed: 0s, ETA:     2s[>>>>>>>                           ] 3/13, 5.3 task/s, elapsed: 1s, ETA:     2s[>>>>>>>>>>                        ] 4/13, 5.0 task/s, elapsed: 1s, ETA:     2s[>>>>>>>>>>>>>                     ] 5/13, 5.6 task/s, elapsed: 1s, ETA:     1s[>>>>>>>>>>>>>>>                   ] 6/13, 6.3 task/s, elapsed: 1s, ETA:     1s[>>>>>>>>>>>>>>>>>>                ] 7/13, 7.1 task/s, elapsed: 1s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>              ] 8/13, 7.7 task/s, elapsed: 1s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>>>>           ] 9/13, 8.4 task/s, elapsed: 1s, ETA:     0s[>>>>>>>>>>>>>>>>>>>>>>>>>        ] 10/13, 8.9 task/s, elapsed: 1s, ETA:     0s[>>>>>>>>>>>>>>>>>>>>>>>>>>>      ] 11/13, 9.5 task/s, elapsed: 1s, ETA:     0s[>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>   ] 12/13, 9.9 task/s, elapsed: 1s, ETA:     0s[>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>] 13/13, 10.4 task/s, elapsed: 1s, ETA:     0s2023-02-09 14:53:55,318 - mmdet - INFO - Evaluating bbox...
-Loading and preparing results...
-DONE (t=0.00s)
-creating index...
-index created!
-Running per image evaluation...
-Evaluate annotation type *bbox*
-DONE (t=0.01s).
-Accumulating evaluation results...
-DONE (t=0.01s).
-2023-02-09 14:53:55,338 - mmdet - INFO - 
- Average Precision  (AP) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.670
- Average Precision  (AP) @[ IoU=0.50      | area=   all | maxDets=1000 ] = 0.860
- Average Precision  (AP) @[ IoU=0.75      | area=   all | maxDets=1000 ] = 0.782
- Average Precision  (AP) @[ IoU=0.50:0.95 | area= small | maxDets=1000 ] = 0.101
- Average Precision  (AP) @[ IoU=0.50:0.95 | area=medium | maxDets=1000 ] = 0.545
- Average Precision  (AP) @[ IoU=0.50:0.95 | area= large | maxDets=1000 ] = 0.734
- Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.718
- Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=300 ] = 0.718
- Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=1000 ] = 0.718
- Average Recall     (AR) @[ IoU=0.50:0.95 | area= small | maxDets=1000 ] = 0.100
- Average Recall     (AR) @[ IoU=0.50:0.95 | area=medium | maxDets=1000 ] = 0.617
- Average Recall     (AR) @[ IoU=0.50:0.95 | area= large | maxDets=1000 ] = 0.786
-
-2023-02-09 14:53:55,338 - mmdet - INFO - Evaluating segm...
-/data/run01/scz0bdh/mmlab_hub/mmdetection-master/mmdet/datasets/coco.py:470: UserWarning: The key "bbox" is deleted for more accurate mask AP of small/medium/large instances since v2.12.0. This does not change the overall mAP calculation.
-  warnings.warn(
-Loading and preparing results...
-DONE (t=0.00s)
-creating index...
-index created!
-Running per image evaluation...
-Evaluate annotation type *segm*
-DONE (t=0.01s).
-Accumulating evaluation results...
-DONE (t=0.01s).
-2023-02-09 14:53:55,362 - mmdet - INFO - 
- Average Precision  (AP) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.745
- Average Precision  (AP) @[ IoU=0.50      | area=   all | maxDets=1000 ] = 0.843
- Average Precision  (AP) @[ IoU=0.75      | area=   all | maxDets=1000 ] = 0.825
- Average Precision  (AP) @[ IoU=0.50:0.95 | area= small | maxDets=1000 ] = 0.151
- Average Precision  (AP) @[ IoU=0.50:0.95 | area=medium | maxDets=1000 ] = 0.631
- Average Precision  (AP) @[ IoU=0.50:0.95 | area= large | maxDets=1000 ] = 0.807
- Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.784
- Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=300 ] = 0.784
- Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=1000 ] = 0.784
- Average Recall     (AR) @[ IoU=0.50:0.95 | area= small | maxDets=1000 ] = 0.150
- Average Recall     (AR) @[ IoU=0.50:0.95 | area=medium | maxDets=1000 ] = 0.708
- Average Recall     (AR) @[ IoU=0.50:0.95 | area= large | maxDets=1000 ] = 0.844
-
-2023-02-09 14:53:55,362 - mmdet - INFO - Exp name: config.py
-2023-02-09 14:53:55,362 - mmdet - INFO - Epoch(val) [7][13]	bbox_mAP: 0.6701, bbox_mAP_50: 0.8597, bbox_mAP_75: 0.7818, bbox_mAP_s: 0.1010, bbox_mAP_m: 0.5454, bbox_mAP_l: 0.7342, bbox_mAP_copypaste: 0.6701 0.8597 0.7818 0.1010 0.5454 0.7342, segm_mAP: 0.7447, segm_mAP_50: 0.8434, segm_mAP_75: 0.8247, segm_mAP_s: 0.1515, segm_mAP_m: 0.6306, segm_mAP_l: 0.8074, segm_mAP_copypaste: 0.7447 0.8434 0.8247 0.1515 0.6306 0.8074
-2023-02-09 14:54:03,926 - mmdet - INFO - Saving checkpoint at 8 epochs
-[                                                  ] 0/13, elapsed: 0s, ETA:[>>                                ] 1/13, 3.5 task/s, elapsed: 0s, ETA:     3s[>>>>>                             ] 2/13, 4.9 task/s, elapsed: 0s, ETA:     2s[>>>>>>>                           ] 3/13, 5.7 task/s, elapsed: 1s, ETA:     2s[>>>>>>>>>>                        ] 4/13, 5.7 task/s, elapsed: 1s, ETA:     2s[>>>>>>>>>>>>>                     ] 5/13, 6.3 task/s, elapsed: 1s, ETA:     1s[>>>>>>>>>>>>>>>                   ] 6/13, 7.1 task/s, elapsed: 1s, ETA:     1s[>>>>>>>>>>>>>>>>>>                ] 7/13, 8.0 task/s, elapsed: 1s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>              ] 8/13, 8.7 task/s, elapsed: 1s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>>>>           ] 9/13, 9.4 task/s, elapsed: 1s, ETA:     0s[>>>>>>>>>>>>>>>>>>>>>>>>>        ] 10/13, 9.9 task/s, elapsed: 1s, ETA:     0s[>>>>>>>>>>>>>>>>>>>>>>>>>>>     ] 11/13, 10.5 task/s, elapsed: 1s, ETA:     0s[>>>>>>>>>>>>>>>>>>>>>>>>>>>>>   ] 12/13, 11.0 task/s, elapsed: 1s, ETA:     0s[>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>] 13/13, 11.5 task/s, elapsed: 1s, ETA:     0s2023-02-09 14:54:05,740 - mmdet - INFO - Evaluating bbox...
-Loading and preparing results...
-DONE (t=0.00s)
-creating index...
-index created!
-Running per image evaluation...
-Evaluate annotation type *bbox*
-DONE (t=0.01s).
-Accumulating evaluation results...
-DONE (t=0.01s).
-2023-02-09 14:54:05,758 - mmdet - INFO - 
- Average Precision  (AP) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.646
- Average Precision  (AP) @[ IoU=0.50      | area=   all | maxDets=1000 ] = 0.806
- Average Precision  (AP) @[ IoU=0.75      | area=   all | maxDets=1000 ] = 0.769
- Average Precision  (AP) @[ IoU=0.50:0.95 | area= small | maxDets=1000 ] = 0.101
- Average Precision  (AP) @[ IoU=0.50:0.95 | area=medium | maxDets=1000 ] = 0.519
- Average Precision  (AP) @[ IoU=0.50:0.95 | area= large | maxDets=1000 ] = 0.721
- Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.684
- Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=300 ] = 0.684
- Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=1000 ] = 0.684
- Average Recall     (AR) @[ IoU=0.50:0.95 | area= small | maxDets=1000 ] = 0.100
- Average Recall     (AR) @[ IoU=0.50:0.95 | area=medium | maxDets=1000 ] = 0.550
- Average Recall     (AR) @[ IoU=0.50:0.95 | area= large | maxDets=1000 ] = 0.761
-
-2023-02-09 14:54:05,758 - mmdet - INFO - Evaluating segm...
-/data/run01/scz0bdh/mmlab_hub/mmdetection-master/mmdet/datasets/coco.py:470: UserWarning: The key "bbox" is deleted for more accurate mask AP of small/medium/large instances since v2.12.0. This does not change the overall mAP calculation.
-  warnings.warn(
-Loading and preparing results...
-DONE (t=0.00s)
-creating index...
-index created!
-Running per image evaluation...
-Evaluate annotation type *segm*
-DONE (t=0.01s).
-Accumulating evaluation results...
-DONE (t=0.01s).
-2023-02-09 14:54:05,779 - mmdet - INFO - 
- Average Precision  (AP) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.710
- Average Precision  (AP) @[ IoU=0.50      | area=   all | maxDets=1000 ] = 0.806
- Average Precision  (AP) @[ IoU=0.75      | area=   all | maxDets=1000 ] = 0.783
- Average Precision  (AP) @[ IoU=0.50:0.95 | area= small | maxDets=1000 ] = 0.151
- Average Precision  (AP) @[ IoU=0.50:0.95 | area=medium | maxDets=1000 ] = 0.562
- Average Precision  (AP) @[ IoU=0.50:0.95 | area= large | maxDets=1000 ] = 0.791
- Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.746
- Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=300 ] = 0.746
- Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=1000 ] = 0.746
- Average Recall     (AR) @[ IoU=0.50:0.95 | area= small | maxDets=1000 ] = 0.150
- Average Recall     (AR) @[ IoU=0.50:0.95 | area=medium | maxDets=1000 ] = 0.600
- Average Recall     (AR) @[ IoU=0.50:0.95 | area= large | maxDets=1000 ] = 0.828
-
-2023-02-09 14:54:05,779 - mmdet - INFO - Exp name: config.py
-2023-02-09 14:54:05,780 - mmdet - INFO - Epoch(val) [8][13]	bbox_mAP: 0.6465, bbox_mAP_50: 0.8061, bbox_mAP_75: 0.7691, bbox_mAP_s: 0.1010, bbox_mAP_m: 0.5193, bbox_mAP_l: 0.7214, bbox_mAP_copypaste: 0.6465 0.8061 0.7691 0.1010 0.5193 0.7214, segm_mAP: 0.7100, segm_mAP_50: 0.8061, segm_mAP_75: 0.7830, segm_mAP_s: 0.1515, segm_mAP_m: 0.5618, segm_mAP_l: 0.7912, segm_mAP_copypaste: 0.7100 0.8061 0.7830 0.1515 0.5618 0.7912
-2023-02-09 14:54:08,984 - mmdet - INFO - Exp name: config.py
-2023-02-09 14:54:08,984 - mmdet - INFO - Epoch(val) [8][7]	loss_rpn_cls_val: 0.0345, loss_rpn_bbox_val: 0.0166, loss_cls_val: 0.1298, acc_val: 95.5776, loss_bbox_val: 0.1597, loss_mask_val: 0.1134, loss_val: 0.4540
-2023-02-09 14:54:17,729 - mmdet - INFO - Saving checkpoint at 9 epochs
-[                                                  ] 0/13, elapsed: 0s, ETA:[>>                                ] 1/13, 3.8 task/s, elapsed: 0s, ETA:     3s[>>>>>                             ] 2/13, 5.6 task/s, elapsed: 0s, ETA:     2s[>>>>>>>                           ] 3/13, 6.1 task/s, elapsed: 0s, ETA:     2s[>>>>>>>>>>                        ] 4/13, 5.8 task/s, elapsed: 1s, ETA:     2s[>>>>>>>>>>>>>                     ] 5/13, 6.4 task/s, elapsed: 1s, ETA:     1s[>>>>>>>>>>>>>>>                   ] 6/13, 7.3 task/s, elapsed: 1s, ETA:     1s[>>>>>>>>>>>>>>>>>>                ] 7/13, 8.0 task/s, elapsed: 1s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>              ] 8/13, 8.8 task/s, elapsed: 1s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>>>>           ] 9/13, 9.5 task/s, elapsed: 1s, ETA:     0s[>>>>>>>>>>>>>>>>>>>>>>>>        ] 10/13, 10.0 task/s, elapsed: 1s, ETA:     0s[>>>>>>>>>>>>>>>>>>>>>>>>>>>     ] 11/13, 10.6 task/s, elapsed: 1s, ETA:     0s[>>>>>>>>>>>>>>>>>>>>>>>>>>>>>   ] 12/13, 11.1 task/s, elapsed: 1s, ETA:     0s[>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>] 13/13, 11.5 task/s, elapsed: 1s, ETA:     0s2023-02-09 14:54:19,528 - mmdet - INFO - Evaluating bbox...
-Loading and preparing results...
-DONE (t=0.00s)
-creating index...
-index created!
-Running per image evaluation...
-Evaluate annotation type *bbox*
-DONE (t=0.01s).
-Accumulating evaluation results...
-DONE (t=0.01s).
-2023-02-09 14:54:19,549 - mmdet - INFO - 
- Average Precision  (AP) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.670
- Average Precision  (AP) @[ IoU=0.50      | area=   all | maxDets=1000 ] = 0.804
- Average Precision  (AP) @[ IoU=0.75      | area=   all | maxDets=1000 ] = 0.786
- Average Precision  (AP) @[ IoU=0.50:0.95 | area= small | maxDets=1000 ] = 0.000
- Average Precision  (AP) @[ IoU=0.50:0.95 | area=medium | maxDets=1000 ] = 0.425
- Average Precision  (AP) @[ IoU=0.50:0.95 | area= large | maxDets=1000 ] = 0.763
- Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.728
- Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=300 ] = 0.728
- Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=1000 ] = 0.728
- Average Recall     (AR) @[ IoU=0.50:0.95 | area= small | maxDets=1000 ] = 0.000
- Average Recall     (AR) @[ IoU=0.50:0.95 | area=medium | maxDets=1000 ] = 0.600
- Average Recall     (AR) @[ IoU=0.50:0.95 | area= large | maxDets=1000 ] = 0.811
-
-2023-02-09 14:54:19,550 - mmdet - INFO - Evaluating segm...
-/data/run01/scz0bdh/mmlab_hub/mmdetection-master/mmdet/datasets/coco.py:470: UserWarning: The key "bbox" is deleted for more accurate mask AP of small/medium/large instances since v2.12.0. This does not change the overall mAP calculation.
-  warnings.warn(
-Loading and preparing results...
-DONE (t=0.00s)
-creating index...
-index created!
-Running per image evaluation...
-Evaluate annotation type *segm*
-DONE (t=0.01s).
-Accumulating evaluation results...
-DONE (t=0.01s).
-2023-02-09 14:54:19,571 - mmdet - INFO - 
- Average Precision  (AP) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.715
- Average Precision  (AP) @[ IoU=0.50      | area=   all | maxDets=1000 ] = 0.804
- Average Precision  (AP) @[ IoU=0.75      | area=   all | maxDets=1000 ] = 0.780
- Average Precision  (AP) @[ IoU=0.50:0.95 | area= small | maxDets=1000 ] = 0.000
- Average Precision  (AP) @[ IoU=0.50:0.95 | area=medium | maxDets=1000 ] = 0.387
- Average Precision  (AP) @[ IoU=0.50:0.95 | area= large | maxDets=1000 ] = 0.827
- Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.768
- Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=300 ] = 0.768
- Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=1000 ] = 0.768
- Average Recall     (AR) @[ IoU=0.50:0.95 | area= small | maxDets=1000 ] = 0.000
- Average Recall     (AR) @[ IoU=0.50:0.95 | area=medium | maxDets=1000 ] = 0.608
- Average Recall     (AR) @[ IoU=0.50:0.95 | area= large | maxDets=1000 ] = 0.864
-
-2023-02-09 14:54:19,571 - mmdet - INFO - Exp name: config.py
-2023-02-09 14:54:19,571 - mmdet - INFO - Epoch(val) [9][13]	bbox_mAP: 0.6702, bbox_mAP_50: 0.8037, bbox_mAP_75: 0.7863, bbox_mAP_s: 0.0000, bbox_mAP_m: 0.4254, bbox_mAP_l: 0.7629, bbox_mAP_copypaste: 0.6702 0.8037 0.7863 0.0000 0.4254 0.7629, segm_mAP: 0.7154, segm_mAP_50: 0.8037, segm_mAP_75: 0.7795, segm_mAP_s: 0.0000, segm_mAP_m: 0.3872, segm_mAP_l: 0.8272, segm_mAP_copypaste: 0.7154 0.8037 0.7795 0.0000 0.3872 0.8272
-2023-02-09 14:54:28,370 - mmdet - INFO - Saving checkpoint at 10 epochs
-[                                                  ] 0/13, elapsed: 0s, ETA:[>>                                ] 1/13, 2.7 task/s, elapsed: 0s, ETA:     4s[>>>>>                             ] 2/13, 4.2 task/s, elapsed: 0s, ETA:     3s[>>>>>>>                           ] 3/13, 5.3 task/s, elapsed: 1s, ETA:     2s[>>>>>>>>>>                        ] 4/13, 5.3 task/s, elapsed: 1s, ETA:     2s[>>>>>>>>>>>>>                     ] 5/13, 5.9 task/s, elapsed: 1s, ETA:     1s[>>>>>>>>>>>>>>>                   ] 6/13, 6.7 task/s, elapsed: 1s, ETA:     1s[>>>>>>>>>>>>>>>>>>                ] 7/13, 7.4 task/s, elapsed: 1s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>              ] 8/13, 8.1 task/s, elapsed: 1s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>>>>           ] 9/13, 8.8 task/s, elapsed: 1s, ETA:     0s[>>>>>>>>>>>>>>>>>>>>>>>>>        ] 10/13, 9.4 task/s, elapsed: 1s, ETA:     0s[>>>>>>>>>>>>>>>>>>>>>>>>>>>      ] 11/13, 9.9 task/s, elapsed: 1s, ETA:     0s[>>>>>>>>>>>>>>>>>>>>>>>>>>>>>   ] 12/13, 10.4 task/s, elapsed: 1s, ETA:     0s[>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>] 13/13, 10.8 task/s, elapsed: 1s, ETA:     0s2023-02-09 14:54:30,254 - mmdet - INFO - Evaluating bbox...
-Loading and preparing results...
-DONE (t=0.00s)
-creating index...
-index created!
-Running per image evaluation...
-Evaluate annotation type *bbox*
-DONE (t=0.01s).
-Accumulating evaluation results...
-DONE (t=0.01s).
-2023-02-09 14:54:30,272 - mmdet - INFO - 
- Average Precision  (AP) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.645
- Average Precision  (AP) @[ IoU=0.50      | area=   all | maxDets=1000 ] = 0.804
- Average Precision  (AP) @[ IoU=0.75      | area=   all | maxDets=1000 ] = 0.754
- Average Precision  (AP) @[ IoU=0.50:0.95 | area= small | maxDets=1000 ] = 0.151
- Average Precision  (AP) @[ IoU=0.50:0.95 | area=medium | maxDets=1000 ] = 0.343
- Average Precision  (AP) @[ IoU=0.50:0.95 | area= large | maxDets=1000 ] = 0.750
- Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.700
- Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=300 ] = 0.700
- Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=1000 ] = 0.700
- Average Recall     (AR) @[ IoU=0.50:0.95 | area= small | maxDets=1000 ] = 0.150
- Average Recall     (AR) @[ IoU=0.50:0.95 | area=medium | maxDets=1000 ] = 0.483
- Average Recall     (AR) @[ IoU=0.50:0.95 | area= large | maxDets=1000 ] = 0.803
-
-2023-02-09 14:54:30,272 - mmdet - INFO - Evaluating segm...
-/data/run01/scz0bdh/mmlab_hub/mmdetection-master/mmdet/datasets/coco.py:470: UserWarning: The key "bbox" is deleted for more accurate mask AP of small/medium/large instances since v2.12.0. This does not change the overall mAP calculation.
-  warnings.warn(
-Loading and preparing results...
-DONE (t=0.00s)
-creating index...
-index created!
-Running per image evaluation...
-Evaluate annotation type *segm*
-DONE (t=0.01s).
-Accumulating evaluation results...
-DONE (t=0.01s).
-2023-02-09 14:54:30,292 - mmdet - INFO - 
- Average Precision  (AP) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.695
- Average Precision  (AP) @[ IoU=0.50      | area=   all | maxDets=1000 ] = 0.783
- Average Precision  (AP) @[ IoU=0.75      | area=   all | maxDets=1000 ] = 0.766
- Average Precision  (AP) @[ IoU=0.50:0.95 | area= small | maxDets=1000 ] = 0.101
- Average Precision  (AP) @[ IoU=0.50:0.95 | area=medium | maxDets=1000 ] = 0.350
- Average Precision  (AP) @[ IoU=0.50:0.95 | area= large | maxDets=1000 ] = 0.813
- Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.748
- Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=300 ] = 0.748
- Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=1000 ] = 0.748
- Average Recall     (AR) @[ IoU=0.50:0.95 | area= small | maxDets=1000 ] = 0.100
- Average Recall     (AR) @[ IoU=0.50:0.95 | area=medium | maxDets=1000 ] = 0.542
- Average Recall     (AR) @[ IoU=0.50:0.95 | area= large | maxDets=1000 ] = 0.853
-
-2023-02-09 14:54:30,292 - mmdet - INFO - Exp name: config.py
-2023-02-09 14:54:30,293 - mmdet - INFO - Epoch(val) [10][13]	bbox_mAP: 0.6445, bbox_mAP_50: 0.8039, bbox_mAP_75: 0.7544, bbox_mAP_s: 0.1515, bbox_mAP_m: 0.3428, bbox_mAP_l: 0.7500, bbox_mAP_copypaste: 0.6445 0.8039 0.7544 0.1515 0.3428 0.7500, segm_mAP: 0.6950, segm_mAP_50: 0.7829, segm_mAP_75: 0.7656, segm_mAP_s: 0.1010, segm_mAP_m: 0.3496, segm_mAP_l: 0.8131, segm_mAP_copypaste: 0.6950 0.7829 0.7656 0.1010 0.3496 0.8131
-2023-02-09 14:54:33,396 - mmdet - INFO - Exp name: config.py
-2023-02-09 14:54:33,397 - mmdet - INFO - Epoch(val) [10][7]	loss_rpn_cls_val: 0.0222, loss_rpn_bbox_val: 0.0139, loss_cls_val: 0.1527, acc_val: 95.4102, loss_bbox_val: 0.1575, loss_mask_val: 0.1092, loss_val: 0.4554
-2023-02-09 14:54:41,998 - mmdet - INFO - Saving checkpoint at 11 epochs
-[                                                  ] 0/13, elapsed: 0s, ETA:[>>                                ] 1/13, 3.7 task/s, elapsed: 0s, ETA:     3s[>>>>>                             ] 2/13, 5.3 task/s, elapsed: 0s, ETA:     2s[>>>>>>>                           ] 3/13, 6.5 task/s, elapsed: 0s, ETA:     2s[>>>>>>>>>>                        ] 4/13, 6.4 task/s, elapsed: 1s, ETA:     1s[>>>>>>>>>>>>>                     ] 5/13, 7.0 task/s, elapsed: 1s, ETA:     1s[>>>>>>>>>>>>>>>                   ] 6/13, 7.9 task/s, elapsed: 1s, ETA:     1s[>>>>>>>>>>>>>>>>>>                ] 7/13, 8.8 task/s, elapsed: 1s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>              ] 8/13, 9.5 task/s, elapsed: 1s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>>>           ] 9/13, 10.3 task/s, elapsed: 1s, ETA:     0s[>>>>>>>>>>>>>>>>>>>>>>>>        ] 10/13, 10.8 task/s, elapsed: 1s, ETA:     0s[>>>>>>>>>>>>>>>>>>>>>>>>>>>     ] 11/13, 11.4 task/s, elapsed: 1s, ETA:     0s[>>>>>>>>>>>>>>>>>>>>>>>>>>>>>   ] 12/13, 12.0 task/s, elapsed: 1s, ETA:     0s[>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>] 13/13, 12.4 task/s, elapsed: 1s, ETA:     0s2023-02-09 14:54:43,699 - mmdet - INFO - Evaluating bbox...
-Loading and preparing results...
-DONE (t=0.00s)
-creating index...
-index created!
-Running per image evaluation...
-Evaluate annotation type *bbox*
-DONE (t=0.01s).
-Accumulating evaluation results...
-DONE (t=0.01s).
-2023-02-09 14:54:43,715 - mmdet - INFO - 
- Average Precision  (AP) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.652
- Average Precision  (AP) @[ IoU=0.50      | area=   all | maxDets=1000 ] = 0.770
- Average Precision  (AP) @[ IoU=0.75      | area=   all | maxDets=1000 ] = 0.719
- Average Precision  (AP) @[ IoU=0.50:0.95 | area= small | maxDets=1000 ] = 0.000
- Average Precision  (AP) @[ IoU=0.50:0.95 | area=medium | maxDets=1000 ] = 0.417
- Average Precision  (AP) @[ IoU=0.50:0.95 | area= large | maxDets=1000 ] = 0.757
- Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.684
- Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=300 ] = 0.684
- Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=1000 ] = 0.684
- Average Recall     (AR) @[ IoU=0.50:0.95 | area= small | maxDets=1000 ] = 0.000
- Average Recall     (AR) @[ IoU=0.50:0.95 | area=medium | maxDets=1000 ] = 0.483
- Average Recall     (AR) @[ IoU=0.50:0.95 | area= large | maxDets=1000 ] = 0.789
-
-2023-02-09 14:54:43,715 - mmdet - INFO - Evaluating segm...
-/data/run01/scz0bdh/mmlab_hub/mmdetection-master/mmdet/datasets/coco.py:470: UserWarning: The key "bbox" is deleted for more accurate mask AP of small/medium/large instances since v2.12.0. This does not change the overall mAP calculation.
-  warnings.warn(
-Loading and preparing results...
-DONE (t=0.00s)
-creating index...
-index created!
-Running per image evaluation...
-Evaluate annotation type *segm*
-DONE (t=0.01s).
-Accumulating evaluation results...
-DONE (t=0.01s).
-2023-02-09 14:54:43,734 - mmdet - INFO - 
- Average Precision  (AP) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.683
- Average Precision  (AP) @[ IoU=0.50      | area=   all | maxDets=1000 ] = 0.772
- Average Precision  (AP) @[ IoU=0.75      | area=   all | maxDets=1000 ] = 0.752
- Average Precision  (AP) @[ IoU=0.50:0.95 | area= small | maxDets=1000 ] = 0.000
- Average Precision  (AP) @[ IoU=0.50:0.95 | area=medium | maxDets=1000 ] = 0.421
- Average Precision  (AP) @[ IoU=0.50:0.95 | area= large | maxDets=1000 ] = 0.796
- Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.710
- Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=300 ] = 0.710
- Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=1000 ] = 0.710
- Average Recall     (AR) @[ IoU=0.50:0.95 | area= small | maxDets=1000 ] = 0.000
- Average Recall     (AR) @[ IoU=0.50:0.95 | area=medium | maxDets=1000 ] = 0.483
- Average Recall     (AR) @[ IoU=0.50:0.95 | area= large | maxDets=1000 ] = 0.825
-
-2023-02-09 14:54:43,734 - mmdet - INFO - Exp name: config.py
-2023-02-09 14:54:43,734 - mmdet - INFO - Epoch(val) [11][13]	bbox_mAP: 0.6524, bbox_mAP_50: 0.7705, bbox_mAP_75: 0.7189, bbox_mAP_s: 0.0000, bbox_mAP_m: 0.4175, bbox_mAP_l: 0.7566, bbox_mAP_copypaste: 0.6524 0.7705 0.7189 0.0000 0.4175 0.7566, segm_mAP: 0.6826, segm_mAP_50: 0.7723, segm_mAP_75: 0.7515, segm_mAP_s: 0.0000, segm_mAP_m: 0.4207, segm_mAP_l: 0.7964, segm_mAP_copypaste: 0.6826 0.7723 0.7515 0.0000 0.4207 0.7964
-2023-02-09 14:54:52,192 - mmdet - INFO - Saving checkpoint at 12 epochs
-[                                                  ] 0/13, elapsed: 0s, ETA:[>>                                ] 1/13, 4.4 task/s, elapsed: 0s, ETA:     3s[>>>>>                             ] 2/13, 6.3 task/s, elapsed: 0s, ETA:     2s[>>>>>>>                           ] 3/13, 7.5 task/s, elapsed: 0s, ETA:     1s[>>>>>>>>>>                        ] 4/13, 7.1 task/s, elapsed: 1s, ETA:     1s[>>>>>>>>>>>>>                     ] 5/13, 7.7 task/s, elapsed: 1s, ETA:     1s[>>>>>>>>>>>>>>>                   ] 6/13, 8.6 task/s, elapsed: 1s, ETA:     1s[>>>>>>>>>>>>>>>>>>                ] 7/13, 9.4 task/s, elapsed: 1s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>             ] 8/13, 10.2 task/s, elapsed: 1s, ETA:     0s[>>>>>>>>>>>>>>>>>>>>>>           ] 9/13, 10.9 task/s, elapsed: 1s, ETA:     0s[>>>>>>>>>>>>>>>>>>>>>>>>        ] 10/13, 11.5 task/s, elapsed: 1s, ETA:     0s[>>>>>>>>>>>>>>>>>>>>>>>>>>>     ] 11/13, 12.1 task/s, elapsed: 1s, ETA:     0s[>>>>>>>>>>>>>>>>>>>>>>>>>>>>>   ] 12/13, 12.6 task/s, elapsed: 1s, ETA:     0s[>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>] 13/13, 13.0 task/s, elapsed: 1s, ETA:     0s2023-02-09 14:54:53,855 - mmdet - INFO - Evaluating bbox...
-Loading and preparing results...
-DONE (t=0.00s)
-creating index...
-index created!
-Running per image evaluation...
-Evaluate annotation type *bbox*
-DONE (t=0.01s).
-Accumulating evaluation results...
-DONE (t=0.01s).
-2023-02-09 14:54:53,872 - mmdet - INFO - 
- Average Precision  (AP) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.629
- Average Precision  (AP) @[ IoU=0.50      | area=   all | maxDets=1000 ] = 0.750
- Average Precision  (AP) @[ IoU=0.75      | area=   all | maxDets=1000 ] = 0.707
- Average Precision  (AP) @[ IoU=0.50:0.95 | area= small | maxDets=1000 ] = 0.000
- Average Precision  (AP) @[ IoU=0.50:0.95 | area=medium | maxDets=1000 ] = 0.291
- Average Precision  (AP) @[ IoU=0.50:0.95 | area= large | maxDets=1000 ] = 0.751
- Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.694
- Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=300 ] = 0.694
- Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=1000 ] = 0.694
- Average Recall     (AR) @[ IoU=0.50:0.95 | area= small | maxDets=1000 ] = 0.000
- Average Recall     (AR) @[ IoU=0.50:0.95 | area=medium | maxDets=1000 ] = 0.483
- Average Recall     (AR) @[ IoU=0.50:0.95 | area= large | maxDets=1000 ] = 0.803
-
-2023-02-09 14:54:53,872 - mmdet - INFO - Evaluating segm...
-/data/run01/scz0bdh/mmlab_hub/mmdetection-master/mmdet/datasets/coco.py:470: UserWarning: The key "bbox" is deleted for more accurate mask AP of small/medium/large instances since v2.12.0. This does not change the overall mAP calculation.
-  warnings.warn(
-Loading and preparing results...
-DONE (t=0.00s)
-creating index...
-index created!
-Running per image evaluation...
-Evaluate annotation type *segm*
-DONE (t=0.01s).
-Accumulating evaluation results...
-DONE (t=0.01s).
-2023-02-09 14:54:53,891 - mmdet - INFO - 
- Average Precision  (AP) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.666
- Average Precision  (AP) @[ IoU=0.50      | area=   all | maxDets=1000 ] = 0.738
- Average Precision  (AP) @[ IoU=0.75      | area=   all | maxDets=1000 ] = 0.723
- Average Precision  (AP) @[ IoU=0.50:0.95 | area= small | maxDets=1000 ] = 0.000
- Average Precision  (AP) @[ IoU=0.50:0.95 | area=medium | maxDets=1000 ] = 0.269
- Average Precision  (AP) @[ IoU=0.50:0.95 | area= large | maxDets=1000 ] = 0.798
- Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.720
- Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=300 ] = 0.720
- Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=1000 ] = 0.720
- Average Recall     (AR) @[ IoU=0.50:0.95 | area= small | maxDets=1000 ] = 0.000
- Average Recall     (AR) @[ IoU=0.50:0.95 | area=medium | maxDets=1000 ] = 0.492
- Average Recall     (AR) @[ IoU=0.50:0.95 | area= large | maxDets=1000 ] = 0.836
-
-2023-02-09 14:54:53,891 - mmdet - INFO - Exp name: config.py
-2023-02-09 14:54:53,891 - mmdet - INFO - Epoch(val) [12][13]	bbox_mAP: 0.6287, bbox_mAP_50: 0.7505, bbox_mAP_75: 0.7066, bbox_mAP_s: 0.0000, bbox_mAP_m: 0.2909, bbox_mAP_l: 0.7510, bbox_mAP_copypaste: 0.6287 0.7505 0.7066 0.0000 0.2909 0.7510, segm_mAP: 0.6659, segm_mAP_50: 0.7379, segm_mAP_75: 0.7227, segm_mAP_s: 0.0000, segm_mAP_m: 0.2693, segm_mAP_l: 0.7981, segm_mAP_copypaste: 0.6659 0.7379 0.7227 0.0000 0.2693 0.7981
-2023-02-09 14:54:57,134 - mmdet - INFO - Exp name: config.py
-2023-02-09 14:54:57,134 - mmdet - INFO - Epoch(val) [12][7]	loss_rpn_cls_val: 0.0325, loss_rpn_bbox_val: 0.0135, loss_cls_val: 0.1814, acc_val: 95.1730, loss_bbox_val: 0.1622, loss_mask_val: 0.1095, loss_val: 0.4990
-2023-02-09 14:55:05,759 - mmdet - INFO - Saving checkpoint at 13 epochs
-[                                                  ] 0/13, elapsed: 0s, ETA:[>>                                ] 1/13, 3.4 task/s, elapsed: 0s, ETA:     4s[>>>>>                             ] 2/13, 5.2 task/s, elapsed: 0s, ETA:     2s[>>>>>>>                           ] 3/13, 6.3 task/s, elapsed: 0s, ETA:     2s[>>>>>>>>>>                        ] 4/13, 6.0 task/s, elapsed: 1s, ETA:     2s[>>>>>>>>>>>>>                     ] 5/13, 6.6 task/s, elapsed: 1s, ETA:     1s[>>>>>>>>>>>>>>>                   ] 6/13, 7.5 task/s, elapsed: 1s, ETA:     1s[>>>>>>>>>>>>>>>>>>                ] 7/13, 8.3 task/s, elapsed: 1s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>              ] 8/13, 9.0 task/s, elapsed: 1s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>>>>           ] 9/13, 9.7 task/s, elapsed: 1s, ETA:     0s[>>>>>>>>>>>>>>>>>>>>>>>>        ] 10/13, 10.3 task/s, elapsed: 1s, ETA:     0s[>>>>>>>>>>>>>>>>>>>>>>>>>>>     ] 11/13, 10.9 task/s, elapsed: 1s, ETA:     0s[>>>>>>>>>>>>>>>>>>>>>>>>>>>>>   ] 12/13, 11.4 task/s, elapsed: 1s, ETA:     0s[>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>] 13/13, 11.8 task/s, elapsed: 1s, ETA:     0s2023-02-09 14:55:07,498 - mmdet - INFO - Evaluating bbox...
-Loading and preparing results...
-DONE (t=0.00s)
-creating index...
-index created!
-Running per image evaluation...
-Evaluate annotation type *bbox*
-DONE (t=0.01s).
-Accumulating evaluation results...
-DONE (t=0.01s).
-2023-02-09 14:55:07,515 - mmdet - INFO - 
- Average Precision  (AP) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.686
- Average Precision  (AP) @[ IoU=0.50      | area=   all | maxDets=1000 ] = 0.805
- Average Precision  (AP) @[ IoU=0.75      | area=   all | maxDets=1000 ] = 0.791
- Average Precision  (AP) @[ IoU=0.50:0.95 | area= small | maxDets=1000 ] = 0.000
- Average Precision  (AP) @[ IoU=0.50:0.95 | area=medium | maxDets=1000 ] = 0.402
- Average Precision  (AP) @[ IoU=0.50:0.95 | area= large | maxDets=1000 ] = 0.794
- Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.740
- Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=300 ] = 0.740
- Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=1000 ] = 0.740
- Average Recall     (AR) @[ IoU=0.50:0.95 | area= small | maxDets=1000 ] = 0.000
- Average Recall     (AR) @[ IoU=0.50:0.95 | area=medium | maxDets=1000 ] = 0.575
- Average Recall     (AR) @[ IoU=0.50:0.95 | area= large | maxDets=1000 ] = 0.836
-
-2023-02-09 14:55:07,515 - mmdet - INFO - Evaluating segm...
-/data/run01/scz0bdh/mmlab_hub/mmdetection-master/mmdet/datasets/coco.py:470: UserWarning: The key "bbox" is deleted for more accurate mask AP of small/medium/large instances since v2.12.0. This does not change the overall mAP calculation.
-  warnings.warn(
-Loading and preparing results...
-DONE (t=0.00s)
-creating index...
-index created!
-Running per image evaluation...
-Evaluate annotation type *segm*
-DONE (t=0.01s).
-Accumulating evaluation results...
-DONE (t=0.01s).
-2023-02-09 14:55:07,535 - mmdet - INFO - 
- Average Precision  (AP) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.719
- Average Precision  (AP) @[ IoU=0.50      | area=   all | maxDets=1000 ] = 0.807
- Average Precision  (AP) @[ IoU=0.75      | area=   all | maxDets=1000 ] = 0.765
- Average Precision  (AP) @[ IoU=0.50:0.95 | area= small | maxDets=1000 ] = 0.000
- Average Precision  (AP) @[ IoU=0.50:0.95 | area=medium | maxDets=1000 ] = 0.413
- Average Precision  (AP) @[ IoU=0.50:0.95 | area= large | maxDets=1000 ] = 0.829
- Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.772
- Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=300 ] = 0.772
- Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=1000 ] = 0.772
- Average Recall     (AR) @[ IoU=0.50:0.95 | area= small | maxDets=1000 ] = 0.000
- Average Recall     (AR) @[ IoU=0.50:0.95 | area=medium | maxDets=1000 ] = 0.625
- Average Recall     (AR) @[ IoU=0.50:0.95 | area= large | maxDets=1000 ] = 0.864
-
-2023-02-09 14:55:07,535 - mmdet - INFO - Exp name: config.py
-2023-02-09 14:55:07,535 - mmdet - INFO - Epoch(val) [13][13]	bbox_mAP: 0.6859, bbox_mAP_50: 0.8047, bbox_mAP_75: 0.7909, bbox_mAP_s: 0.0000, bbox_mAP_m: 0.4021, bbox_mAP_l: 0.7944, bbox_mAP_copypaste: 0.6859 0.8047 0.7909 0.0000 0.4021 0.7944, segm_mAP: 0.7189, segm_mAP_50: 0.8074, segm_mAP_75: 0.7650, segm_mAP_s: 0.0000, segm_mAP_m: 0.4125, segm_mAP_l: 0.8285, segm_mAP_copypaste: 0.7189 0.8074 0.7650 0.0000 0.4125 0.8285
-2023-02-09 14:55:16,417 - mmdet - INFO - Saving checkpoint at 14 epochs
-[                                                  ] 0/13, elapsed: 0s, ETA:[>>                                ] 1/13, 3.1 task/s, elapsed: 0s, ETA:     4s[>>>>>                             ] 2/13, 4.6 task/s, elapsed: 0s, ETA:     2s[>>>>>>>                           ] 3/13, 5.6 task/s, elapsed: 1s, ETA:     2s[>>>>>>>>>>                        ] 4/13, 5.8 task/s, elapsed: 1s, ETA:     2s[>>>>>>>>>>>>>                     ] 5/13, 6.4 task/s, elapsed: 1s, ETA:     1s[>>>>>>>>>>>>>>>                   ] 6/13, 7.3 task/s, elapsed: 1s, ETA:     1s[>>>>>>>>>>>>>>>>>>                ] 7/13, 8.1 task/s, elapsed: 1s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>              ] 8/13, 8.8 task/s, elapsed: 1s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>>>>           ] 9/13, 9.5 task/s, elapsed: 1s, ETA:     0s[>>>>>>>>>>>>>>>>>>>>>>>>        ] 10/13, 10.1 task/s, elapsed: 1s, ETA:     0s[>>>>>>>>>>>>>>>>>>>>>>>>>>>     ] 11/13, 10.7 task/s, elapsed: 1s, ETA:     0s[>>>>>>>>>>>>>>>>>>>>>>>>>>>>>   ] 12/13, 11.2 task/s, elapsed: 1s, ETA:     0s[>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>] 13/13, 11.6 task/s, elapsed: 1s, ETA:     0s2023-02-09 14:55:18,182 - mmdet - INFO - Evaluating bbox...
-Loading and preparing results...
-DONE (t=0.00s)
-creating index...
-index created!
-Running per image evaluation...
-Evaluate annotation type *bbox*
-DONE (t=0.01s).
-Accumulating evaluation results...
-DONE (t=0.01s).
-2023-02-09 14:55:18,198 - mmdet - INFO - 
- Average Precision  (AP) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.661
- Average Precision  (AP) @[ IoU=0.50      | area=   all | maxDets=1000 ] = 0.775
- Average Precision  (AP) @[ IoU=0.75      | area=   all | maxDets=1000 ] = 0.750
- Average Precision  (AP) @[ IoU=0.50:0.95 | area= small | maxDets=1000 ] = 0.000
- Average Precision  (AP) @[ IoU=0.50:0.95 | area=medium | maxDets=1000 ] = 0.394
- Average Precision  (AP) @[ IoU=0.50:0.95 | area= large | maxDets=1000 ] = 0.774
- Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.706
- Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=300 ] = 0.706
- Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=1000 ] = 0.706
- Average Recall     (AR) @[ IoU=0.50:0.95 | area= small | maxDets=1000 ] = 0.000
- Average Recall     (AR) @[ IoU=0.50:0.95 | area=medium | maxDets=1000 ] = 0.492
- Average Recall     (AR) @[ IoU=0.50:0.95 | area= large | maxDets=1000 ] = 0.817
-
-2023-02-09 14:55:18,199 - mmdet - INFO - Evaluating segm...
-/data/run01/scz0bdh/mmlab_hub/mmdetection-master/mmdet/datasets/coco.py:470: UserWarning: The key "bbox" is deleted for more accurate mask AP of small/medium/large instances since v2.12.0. This does not change the overall mAP calculation.
-  warnings.warn(
-Loading and preparing results...
-DONE (t=0.00s)
-creating index...
-index created!
-Running per image evaluation...
-Evaluate annotation type *segm*
-DONE (t=0.01s).
-Accumulating evaluation results...
-DONE (t=0.01s).
-2023-02-09 14:55:18,218 - mmdet - INFO - 
- Average Precision  (AP) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.703
- Average Precision  (AP) @[ IoU=0.50      | area=   all | maxDets=1000 ] = 0.779
- Average Precision  (AP) @[ IoU=0.75      | area=   all | maxDets=1000 ] = 0.763
- Average Precision  (AP) @[ IoU=0.50:0.95 | area= small | maxDets=1000 ] = 0.000
- Average Precision  (AP) @[ IoU=0.50:0.95 | area=medium | maxDets=1000 ] = 0.399
- Average Precision  (AP) @[ IoU=0.50:0.95 | area= large | maxDets=1000 ] = 0.825
- Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.740
- Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=300 ] = 0.740
- Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=1000 ] = 0.740
- Average Recall     (AR) @[ IoU=0.50:0.95 | area= small | maxDets=1000 ] = 0.000
- Average Recall     (AR) @[ IoU=0.50:0.95 | area=medium | maxDets=1000 ] = 0.500
- Average Recall     (AR) @[ IoU=0.50:0.95 | area= large | maxDets=1000 ] = 0.861
-
-2023-02-09 14:55:18,218 - mmdet - INFO - Exp name: config.py
-2023-02-09 14:55:18,218 - mmdet - INFO - Epoch(val) [14][13]	bbox_mAP: 0.6608, bbox_mAP_50: 0.7753, bbox_mAP_75: 0.7501, bbox_mAP_s: 0.0000, bbox_mAP_m: 0.3938, bbox_mAP_l: 0.7738, bbox_mAP_copypaste: 0.6608 0.7753 0.7501 0.0000 0.3938 0.7738, segm_mAP: 0.7031, segm_mAP_50: 0.7789, segm_mAP_75: 0.7632, segm_mAP_s: 0.0000, segm_mAP_m: 0.3986, segm_mAP_l: 0.8246, segm_mAP_copypaste: 0.7031 0.7789 0.7632 0.0000 0.3986 0.8246
-2023-02-09 14:55:21,462 - mmdet - INFO - Exp name: config.py
-2023-02-09 14:55:21,462 - mmdet - INFO - Epoch(val) [14][7]	loss_rpn_cls_val: 0.0236, loss_rpn_bbox_val: 0.0112, loss_cls_val: 0.1208, acc_val: 96.5960, loss_bbox_val: 0.1189, loss_mask_val: 0.1073, loss_val: 0.3819
-2023-02-09 14:55:30,237 - mmdet - INFO - Saving checkpoint at 15 epochs
-[                                                  ] 0/13, elapsed: 0s, ETA:[>>                                ] 1/13, 3.9 task/s, elapsed: 0s, ETA:     3s[>>>>>                             ] 2/13, 5.7 task/s, elapsed: 0s, ETA:     2s[>>>>>>>                           ] 3/13, 6.7 task/s, elapsed: 0s, ETA:     1s[>>>>>>>>>>                        ] 4/13, 6.8 task/s, elapsed: 1s, ETA:     1s[>>>>>>>>>>>>>                     ] 5/13, 7.5 task/s, elapsed: 1s, ETA:     1s[>>>>>>>>>>>>>>>                   ] 6/13, 8.4 task/s, elapsed: 1s, ETA:     1s[>>>>>>>>>>>>>>>>>>                ] 7/13, 9.2 task/s, elapsed: 1s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>             ] 8/13, 10.0 task/s, elapsed: 1s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>>>           ] 9/13, 10.7 task/s, elapsed: 1s, ETA:     0s[>>>>>>>>>>>>>>>>>>>>>>>>        ] 10/13, 11.3 task/s, elapsed: 1s, ETA:     0s[>>>>>>>>>>>>>>>>>>>>>>>>>>>     ] 11/13, 11.9 task/s, elapsed: 1s, ETA:     0s[>>>>>>>>>>>>>>>>>>>>>>>>>>>>>   ] 12/13, 12.4 task/s, elapsed: 1s, ETA:     0s[>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>] 13/13, 12.8 task/s, elapsed: 1s, ETA:     0s2023-02-09 14:55:31,959 - mmdet - INFO - Evaluating bbox...
-Loading and preparing results...
-DONE (t=0.00s)
-creating index...
-index created!
-Running per image evaluation...
-Evaluate annotation type *bbox*
-DONE (t=0.01s).
-Accumulating evaluation results...
-DONE (t=0.01s).
-2023-02-09 14:55:31,977 - mmdet - INFO - 
- Average Precision  (AP) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.679
- Average Precision  (AP) @[ IoU=0.50      | area=   all | maxDets=1000 ] = 0.786
- Average Precision  (AP) @[ IoU=0.75      | area=   all | maxDets=1000 ] = 0.753
- Average Precision  (AP) @[ IoU=0.50:0.95 | area= small | maxDets=1000 ] = 0.000
- Average Precision  (AP) @[ IoU=0.50:0.95 | area=medium | maxDets=1000 ] = 0.371
- Average Precision  (AP) @[ IoU=0.50:0.95 | area= large | maxDets=1000 ] = 0.790
- Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.736
- Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=300 ] = 0.736
- Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=1000 ] = 0.736
- Average Recall     (AR) @[ IoU=0.50:0.95 | area= small | maxDets=1000 ] = 0.000
- Average Recall     (AR) @[ IoU=0.50:0.95 | area=medium | maxDets=1000 ] = 0.550
- Average Recall     (AR) @[ IoU=0.50:0.95 | area= large | maxDets=1000 ] = 0.839
-
-2023-02-09 14:55:31,977 - mmdet - INFO - Evaluating segm...
-/data/run01/scz0bdh/mmlab_hub/mmdetection-master/mmdet/datasets/coco.py:470: UserWarning: The key "bbox" is deleted for more accurate mask AP of small/medium/large instances since v2.12.0. This does not change the overall mAP calculation.
-  warnings.warn(
-Loading and preparing results...
-DONE (t=0.00s)
-creating index...
-index created!
-Running per image evaluation...
-Evaluate annotation type *segm*
-DONE (t=0.01s).
-Accumulating evaluation results...
-DONE (t=0.01s).
-2023-02-09 14:55:31,997 - mmdet - INFO - 
- Average Precision  (AP) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.708
- Average Precision  (AP) @[ IoU=0.50      | area=   all | maxDets=1000 ] = 0.793
- Average Precision  (AP) @[ IoU=0.75      | area=   all | maxDets=1000 ] = 0.764
- Average Precision  (AP) @[ IoU=0.50:0.95 | area= small | maxDets=1000 ] = 0.000
- Average Precision  (AP) @[ IoU=0.50:0.95 | area=medium | maxDets=1000 ] = 0.375
- Average Precision  (AP) @[ IoU=0.50:0.95 | area= large | maxDets=1000 ] = 0.827
- Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.760
- Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=300 ] = 0.760
- Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=1000 ] = 0.760
- Average Recall     (AR) @[ IoU=0.50:0.95 | area= small | maxDets=1000 ] = 0.000
- Average Recall     (AR) @[ IoU=0.50:0.95 | area=medium | maxDets=1000 ] = 0.575
- Average Recall     (AR) @[ IoU=0.50:0.95 | area= large | maxDets=1000 ] = 0.864
-
-2023-02-09 14:55:31,997 - mmdet - INFO - Exp name: config.py
-2023-02-09 14:55:31,997 - mmdet - INFO - Epoch(val) [15][13]	bbox_mAP: 0.6789, bbox_mAP_50: 0.7865, bbox_mAP_75: 0.7526, bbox_mAP_s: 0.0000, bbox_mAP_m: 0.3708, bbox_mAP_l: 0.7904, bbox_mAP_copypaste: 0.6789 0.7865 0.7526 0.0000 0.3708 0.7904, segm_mAP: 0.7083, segm_mAP_50: 0.7931, segm_mAP_75: 0.7641, segm_mAP_s: 0.0000, segm_mAP_m: 0.3748, segm_mAP_l: 0.8273, segm_mAP_copypaste: 0.7083 0.7931 0.7641 0.0000 0.3748 0.8273
-2023-02-09 14:55:40,750 - mmdet - INFO - Saving checkpoint at 16 epochs
-[                                                  ] 0/13, elapsed: 0s, ETA:[>>                                ] 1/13, 3.4 task/s, elapsed: 0s, ETA:     3s[>>>>>                             ] 2/13, 5.1 task/s, elapsed: 0s, ETA:     2s[>>>>>>>                           ] 3/13, 6.2 task/s, elapsed: 0s, ETA:     2s[>>>>>>>>>>                        ] 4/13, 6.3 task/s, elapsed: 1s, ETA:     1s[>>>>>>>>>>>>>                     ] 5/13, 6.9 task/s, elapsed: 1s, ETA:     1s[>>>>>>>>>>>>>>>                   ] 6/13, 7.8 task/s, elapsed: 1s, ETA:     1s[>>>>>>>>>>>>>>>>>>                ] 7/13, 8.6 task/s, elapsed: 1s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>              ] 8/13, 9.4 task/s, elapsed: 1s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>>>           ] 9/13, 10.1 task/s, elapsed: 1s, ETA:     0s[>>>>>>>>>>>>>>>>>>>>>>>>        ] 10/13, 10.6 task/s, elapsed: 1s, ETA:     0s[>>>>>>>>>>>>>>>>>>>>>>>>>>>     ] 11/13, 11.2 task/s, elapsed: 1s, ETA:     0s[>>>>>>>>>>>>>>>>>>>>>>>>>>>>>   ] 12/13, 11.7 task/s, elapsed: 1s, ETA:     0s[>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>] 13/13, 12.2 task/s, elapsed: 1s, ETA:     0s2023-02-09 14:55:42,527 - mmdet - INFO - Evaluating bbox...
-Loading and preparing results...
-DONE (t=0.00s)
-creating index...
-index created!
-Running per image evaluation...
-Evaluate annotation type *bbox*
-DONE (t=0.01s).
-Accumulating evaluation results...
-DONE (t=0.01s).
-2023-02-09 14:55:42,543 - mmdet - INFO - 
- Average Precision  (AP) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.663
- Average Precision  (AP) @[ IoU=0.50      | area=   all | maxDets=1000 ] = 0.767
- Average Precision  (AP) @[ IoU=0.75      | area=   all | maxDets=1000 ] = 0.756
- Average Precision  (AP) @[ IoU=0.50:0.95 | area= small | maxDets=1000 ] = 0.000
- Average Precision  (AP) @[ IoU=0.50:0.95 | area=medium | maxDets=1000 ] = 0.333
- Average Precision  (AP) @[ IoU=0.50:0.95 | area= large | maxDets=1000 ] = 0.791
- Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.716
- Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=300 ] = 0.716
- Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=1000 ] = 0.716
- Average Recall     (AR) @[ IoU=0.50:0.95 | area= small | maxDets=1000 ] = 0.000
- Average Recall     (AR) @[ IoU=0.50:0.95 | area=medium | maxDets=1000 ] = 0.467
- Average Recall     (AR) @[ IoU=0.50:0.95 | area= large | maxDets=1000 ] = 0.839
-
-2023-02-09 14:55:42,543 - mmdet - INFO - Evaluating segm...
-/data/run01/scz0bdh/mmlab_hub/mmdetection-master/mmdet/datasets/coco.py:470: UserWarning: The key "bbox" is deleted for more accurate mask AP of small/medium/large instances since v2.12.0. This does not change the overall mAP calculation.
-  warnings.warn(
-Loading and preparing results...
-DONE (t=0.00s)
-creating index...
-index created!
-Running per image evaluation...
-Evaluate annotation type *segm*
-DONE (t=0.01s).
-Accumulating evaluation results...
-DONE (t=0.01s).
-2023-02-09 14:55:42,562 - mmdet - INFO - 
- Average Precision  (AP) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.703
- Average Precision  (AP) @[ IoU=0.50      | area=   all | maxDets=1000 ] = 0.774
- Average Precision  (AP) @[ IoU=0.75      | area=   all | maxDets=1000 ] = 0.758
- Average Precision  (AP) @[ IoU=0.50:0.95 | area= small | maxDets=1000 ] = 0.000
- Average Precision  (AP) @[ IoU=0.50:0.95 | area=medium | maxDets=1000 ] = 0.354
- Average Precision  (AP) @[ IoU=0.50:0.95 | area= large | maxDets=1000 ] = 0.831
- Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.744
- Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=300 ] = 0.744
- Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=1000 ] = 0.744
- Average Recall     (AR) @[ IoU=0.50:0.95 | area= small | maxDets=1000 ] = 0.000
- Average Recall     (AR) @[ IoU=0.50:0.95 | area=medium | maxDets=1000 ] = 0.500
- Average Recall     (AR) @[ IoU=0.50:0.95 | area= large | maxDets=1000 ] = 0.867
-
-2023-02-09 14:55:42,562 - mmdet - INFO - Exp name: config.py
-2023-02-09 14:55:42,562 - mmdet - INFO - Epoch(val) [16][13]	bbox_mAP: 0.6629, bbox_mAP_50: 0.7669, bbox_mAP_75: 0.7564, bbox_mAP_s: 0.0000, bbox_mAP_m: 0.3331, bbox_mAP_l: 0.7914, bbox_mAP_copypaste: 0.6629 0.7669 0.7564 0.0000 0.3331 0.7914, segm_mAP: 0.7030, segm_mAP_50: 0.7741, segm_mAP_75: 0.7575, segm_mAP_s: 0.0000, segm_mAP_m: 0.3545, segm_mAP_l: 0.8306, segm_mAP_copypaste: 0.7030 0.7741 0.7575 0.0000 0.3545 0.8306
-2023-02-09 14:55:45,789 - mmdet - INFO - Exp name: config.py
-2023-02-09 14:55:45,789 - mmdet - INFO - Epoch(val) [16][7]	loss_rpn_cls_val: 0.0358, loss_rpn_bbox_val: 0.0115, loss_cls_val: 0.1782, acc_val: 95.6752, loss_bbox_val: 0.1393, loss_mask_val: 0.1099, loss_val: 0.4747
-2023-02-09 14:55:54,711 - mmdet - INFO - Saving checkpoint at 17 epochs
-[                                                  ] 0/13, elapsed: 0s, ETA:[>>                                ] 1/13, 4.3 task/s, elapsed: 0s, ETA:     3s[>>>>>                             ] 2/13, 5.6 task/s, elapsed: 0s, ETA:     2s[>>>>>>>                           ] 3/13, 6.7 task/s, elapsed: 0s, ETA:     1s[>>>>>>>>>>                        ] 4/13, 6.6 task/s, elapsed: 1s, ETA:     1s[>>>>>>>>>>>>>                     ] 5/13, 7.3 task/s, elapsed: 1s, ETA:     1s[>>>>>>>>>>>>>>>                   ] 6/13, 8.2 task/s, elapsed: 1s, ETA:     1s[>>>>>>>>>>>>>>>>>>                ] 7/13, 9.0 task/s, elapsed: 1s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>              ] 8/13, 9.8 task/s, elapsed: 1s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>>>           ] 9/13, 10.5 task/s, elapsed: 1s, ETA:     0s[>>>>>>>>>>>>>>>>>>>>>>>>        ] 10/13, 11.1 task/s, elapsed: 1s, ETA:     0s[>>>>>>>>>>>>>>>>>>>>>>>>>>>     ] 11/13, 11.7 task/s, elapsed: 1s, ETA:     0s[>>>>>>>>>>>>>>>>>>>>>>>>>>>>>   ] 12/13, 12.2 task/s, elapsed: 1s, ETA:     0s[>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>] 13/13, 12.6 task/s, elapsed: 1s, ETA:     0s2023-02-09 14:55:56,446 - mmdet - INFO - Evaluating bbox...
-Loading and preparing results...
-DONE (t=0.00s)
-creating index...
-index created!
-Running per image evaluation...
-Evaluate annotation type *bbox*
-DONE (t=0.01s).
-Accumulating evaluation results...
-DONE (t=0.01s).
-2023-02-09 14:55:56,463 - mmdet - INFO - 
- Average Precision  (AP) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.672
- Average Precision  (AP) @[ IoU=0.50      | area=   all | maxDets=1000 ] = 0.782
- Average Precision  (AP) @[ IoU=0.75      | area=   all | maxDets=1000 ] = 0.758
- Average Precision  (AP) @[ IoU=0.50:0.95 | area= small | maxDets=1000 ] = 0.000
- Average Precision  (AP) @[ IoU=0.50:0.95 | area=medium | maxDets=1000 ] = 0.359
- Average Precision  (AP) @[ IoU=0.50:0.95 | area= large | maxDets=1000 ] = 0.790
- Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.726
- Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=300 ] = 0.726
- Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=1000 ] = 0.726
- Average Recall     (AR) @[ IoU=0.50:0.95 | area= small | maxDets=1000 ] = 0.000
- Average Recall     (AR) @[ IoU=0.50:0.95 | area=medium | maxDets=1000 ] = 0.517
- Average Recall     (AR) @[ IoU=0.50:0.95 | area= large | maxDets=1000 ] = 0.836
-
-2023-02-09 14:55:56,463 - mmdet - INFO - Evaluating segm...
-/data/run01/scz0bdh/mmlab_hub/mmdetection-master/mmdet/datasets/coco.py:470: UserWarning: The key "bbox" is deleted for more accurate mask AP of small/medium/large instances since v2.12.0. This does not change the overall mAP calculation.
-  warnings.warn(
-Loading and preparing results...
-DONE (t=0.00s)
-creating index...
-index created!
-Running per image evaluation...
-Evaluate annotation type *segm*
-DONE (t=0.01s).
-Accumulating evaluation results...
-DONE (t=0.01s).
-2023-02-09 14:55:56,482 - mmdet - INFO - 
- Average Precision  (AP) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.706
- Average Precision  (AP) @[ IoU=0.50      | area=   all | maxDets=1000 ] = 0.788
- Average Precision  (AP) @[ IoU=0.75      | area=   all | maxDets=1000 ] = 0.759
- Average Precision  (AP) @[ IoU=0.50:0.95 | area= small | maxDets=1000 ] = 0.000
- Average Precision  (AP) @[ IoU=0.50:0.95 | area=medium | maxDets=1000 ] = 0.387
- Average Precision  (AP) @[ IoU=0.50:0.95 | area= large | maxDets=1000 ] = 0.827
- Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.762
- Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=300 ] = 0.762
- Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=1000 ] = 0.762
- Average Recall     (AR) @[ IoU=0.50:0.95 | area= small | maxDets=1000 ] = 0.000
- Average Recall     (AR) @[ IoU=0.50:0.95 | area=medium | maxDets=1000 ] = 0.575
- Average Recall     (AR) @[ IoU=0.50:0.95 | area= large | maxDets=1000 ] = 0.867
-
-2023-02-09 14:55:56,483 - mmdet - INFO - Exp name: config.py
-2023-02-09 14:55:56,483 - mmdet - INFO - Epoch(val) [17][13]	bbox_mAP: 0.6718, bbox_mAP_50: 0.7821, bbox_mAP_75: 0.7577, bbox_mAP_s: 0.0000, bbox_mAP_m: 0.3590, bbox_mAP_l: 0.7897, bbox_mAP_copypaste: 0.6718 0.7821 0.7577 0.0000 0.3590 0.7897, segm_mAP: 0.7061, segm_mAP_50: 0.7883, segm_mAP_75: 0.7590, segm_mAP_s: 0.0000, segm_mAP_m: 0.3874, segm_mAP_l: 0.8274, segm_mAP_copypaste: 0.7061 0.7883 0.7590 0.0000 0.3874 0.8274
-2023-02-09 14:56:05,396 - mmdet - INFO - Saving checkpoint at 18 epochs
-[                                                  ] 0/13, elapsed: 0s, ETA:[>>                                ] 1/13, 3.2 task/s, elapsed: 0s, ETA:     4s[>>>>>                             ] 2/13, 4.9 task/s, elapsed: 0s, ETA:     2s[>>>>>>>                           ] 3/13, 5.9 task/s, elapsed: 1s, ETA:     2s[>>>>>>>>>>                        ] 4/13, 6.1 task/s, elapsed: 1s, ETA:     1s[>>>>>>>>>>>>>                     ] 5/13, 6.7 task/s, elapsed: 1s, ETA:     1s[>>>>>>>>>>>>>>>                   ] 6/13, 7.6 task/s, elapsed: 1s, ETA:     1s[>>>>>>>>>>>>>>>>>>                ] 7/13, 8.4 task/s, elapsed: 1s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>              ] 8/13, 9.2 task/s, elapsed: 1s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>>>>           ] 9/13, 9.9 task/s, elapsed: 1s, ETA:     0s[>>>>>>>>>>>>>>>>>>>>>>>>        ] 10/13, 10.4 task/s, elapsed: 1s, ETA:     0s[>>>>>>>>>>>>>>>>>>>>>>>>>>>     ] 11/13, 11.0 task/s, elapsed: 1s, ETA:     0s[>>>>>>>>>>>>>>>>>>>>>>>>>>>>>   ] 12/13, 11.6 task/s, elapsed: 1s, ETA:     0s[>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>] 13/13, 12.0 task/s, elapsed: 1s, ETA:     0s2023-02-09 14:56:07,151 - mmdet - INFO - Evaluating bbox...
-Loading and preparing results...
-DONE (t=0.00s)
-creating index...
-index created!
-Running per image evaluation...
-Evaluate annotation type *bbox*
-DONE (t=0.01s).
-Accumulating evaluation results...
-DONE (t=0.01s).
-2023-02-09 14:56:07,167 - mmdet - INFO - 
- Average Precision  (AP) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.673
- Average Precision  (AP) @[ IoU=0.50      | area=   all | maxDets=1000 ] = 0.785
- Average Precision  (AP) @[ IoU=0.75      | area=   all | maxDets=1000 ] = 0.761
- Average Precision  (AP) @[ IoU=0.50:0.95 | area= small | maxDets=1000 ] = 0.000
- Average Precision  (AP) @[ IoU=0.50:0.95 | area=medium | maxDets=1000 ] = 0.353
- Average Precision  (AP) @[ IoU=0.50:0.95 | area= large | maxDets=1000 ] = 0.788
- Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.726
- Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=300 ] = 0.726
- Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=1000 ] = 0.726
- Average Recall     (AR) @[ IoU=0.50:0.95 | area= small | maxDets=1000 ] = 0.000
- Average Recall     (AR) @[ IoU=0.50:0.95 | area=medium | maxDets=1000 ] = 0.525
- Average Recall     (AR) @[ IoU=0.50:0.95 | area= large | maxDets=1000 ] = 0.833
-
-2023-02-09 14:56:07,167 - mmdet - INFO - Evaluating segm...
-/data/run01/scz0bdh/mmlab_hub/mmdetection-master/mmdet/datasets/coco.py:470: UserWarning: The key "bbox" is deleted for more accurate mask AP of small/medium/large instances since v2.12.0. This does not change the overall mAP calculation.
-  warnings.warn(
-Loading and preparing results...
-DONE (t=0.00s)
-creating index...
-index created!
-Running per image evaluation...
-Evaluate annotation type *segm*
-DONE (t=0.01s).
-Accumulating evaluation results...
-DONE (t=0.01s).
-2023-02-09 14:56:07,186 - mmdet - INFO - 
- Average Precision  (AP) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.707
- Average Precision  (AP) @[ IoU=0.50      | area=   all | maxDets=1000 ] = 0.788
- Average Precision  (AP) @[ IoU=0.75      | area=   all | maxDets=1000 ] = 0.759
- Average Precision  (AP) @[ IoU=0.50:0.95 | area= small | maxDets=1000 ] = 0.000
- Average Precision  (AP) @[ IoU=0.50:0.95 | area=medium | maxDets=1000 ] = 0.365
- Average Precision  (AP) @[ IoU=0.50:0.95 | area= large | maxDets=1000 ] = 0.830
- Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.764
- Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=300 ] = 0.764
- Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=1000 ] = 0.764
- Average Recall     (AR) @[ IoU=0.50:0.95 | area= small | maxDets=1000 ] = 0.000
- Average Recall     (AR) @[ IoU=0.50:0.95 | area=medium | maxDets=1000 ] = 0.575
- Average Recall     (AR) @[ IoU=0.50:0.95 | area= large | maxDets=1000 ] = 0.869
-
-2023-02-09 14:56:07,195 - mmdet - INFO - Exp name: config.py
-2023-02-09 14:56:07,195 - mmdet - INFO - Epoch(val) [18][13]	bbox_mAP: 0.6728, bbox_mAP_50: 0.7846, bbox_mAP_75: 0.7608, bbox_mAP_s: 0.0000, bbox_mAP_m: 0.3534, bbox_mAP_l: 0.7882, bbox_mAP_copypaste: 0.6728 0.7846 0.7608 0.0000 0.3534 0.7882, segm_mAP: 0.7074, segm_mAP_50: 0.7883, segm_mAP_75: 0.7590, segm_mAP_s: 0.0000, segm_mAP_m: 0.3646, segm_mAP_l: 0.8298, segm_mAP_copypaste: 0.7074 0.7883 0.7590 0.0000 0.3646 0.8298
-2023-02-09 14:56:10,491 - mmdet - INFO - Exp name: config.py
-2023-02-09 14:56:10,491 - mmdet - INFO - Epoch(val) [18][7]	loss_rpn_cls_val: 0.0265, loss_rpn_bbox_val: 0.0107, loss_cls_val: 0.1601, acc_val: 95.9124, loss_bbox_val: 0.1372, loss_mask_val: 0.1053, loss_val: 0.4398
-2023-02-09 14:56:19,099 - mmdet - INFO - Saving checkpoint at 19 epochs
-[                                                  ] 0/13, elapsed: 0s, ETA:[>>                                ] 1/13, 3.5 task/s, elapsed: 0s, ETA:     3s[>>>>>                             ] 2/13, 5.2 task/s, elapsed: 0s, ETA:     2s[>>>>>>>                           ] 3/13, 6.3 task/s, elapsed: 0s, ETA:     2s[>>>>>>>>>>                        ] 4/13, 6.3 task/s, elapsed: 1s, ETA:     1s[>>>>>>>>>>>>>                     ] 5/13, 7.0 task/s, elapsed: 1s, ETA:     1s[>>>>>>>>>>>>>>>                   ] 6/13, 7.9 task/s, elapsed: 1s, ETA:     1s[>>>>>>>>>>>>>>>>>>                ] 7/13, 8.7 task/s, elapsed: 1s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>              ] 8/13, 9.5 task/s, elapsed: 1s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>>>           ] 9/13, 10.2 task/s, elapsed: 1s, ETA:     0s[>>>>>>>>>>>>>>>>>>>>>>>>        ] 10/13, 10.8 task/s, elapsed: 1s, ETA:     0s[>>>>>>>>>>>>>>>>>>>>>>>>>>>     ] 11/13, 11.4 task/s, elapsed: 1s, ETA:     0s[>>>>>>>>>>>>>>>>>>>>>>>>>>>>>   ] 12/13, 11.9 task/s, elapsed: 1s, ETA:     0s[>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>] 13/13, 12.3 task/s, elapsed: 1s, ETA:     0s2023-02-09 14:56:20,800 - mmdet - INFO - Evaluating bbox...
-Loading and preparing results...
-DONE (t=0.00s)
-creating index...
-index created!
-Running per image evaluation...
-Evaluate annotation type *bbox*
-DONE (t=0.01s).
-Accumulating evaluation results...
-DONE (t=0.01s).
-2023-02-09 14:56:20,817 - mmdet - INFO - 
- Average Precision  (AP) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.667
- Average Precision  (AP) @[ IoU=0.50      | area=   all | maxDets=1000 ] = 0.764
- Average Precision  (AP) @[ IoU=0.75      | area=   all | maxDets=1000 ] = 0.754
- Average Precision  (AP) @[ IoU=0.50:0.95 | area= small | maxDets=1000 ] = 0.000
- Average Precision  (AP) @[ IoU=0.50:0.95 | area=medium | maxDets=1000 ] = 0.328
- Average Precision  (AP) @[ IoU=0.50:0.95 | area= large | maxDets=1000 ] = 0.796
- Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.720
- Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=300 ] = 0.720
- Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=1000 ] = 0.720
- Average Recall     (AR) @[ IoU=0.50:0.95 | area= small | maxDets=1000 ] = 0.000
- Average Recall     (AR) @[ IoU=0.50:0.95 | area=medium | maxDets=1000 ] = 0.475
- Average Recall     (AR) @[ IoU=0.50:0.95 | area= large | maxDets=1000 ] = 0.842
-
-2023-02-09 14:56:20,817 - mmdet - INFO - Evaluating segm...
-/data/run01/scz0bdh/mmlab_hub/mmdetection-master/mmdet/datasets/coco.py:470: UserWarning: The key "bbox" is deleted for more accurate mask AP of small/medium/large instances since v2.12.0. This does not change the overall mAP calculation.
-  warnings.warn(
-Loading and preparing results...
-DONE (t=0.00s)
-creating index...
-index created!
-Running per image evaluation...
-Evaluate annotation type *segm*
-DONE (t=0.01s).
-Accumulating evaluation results...
-DONE (t=0.01s).
-2023-02-09 14:56:20,836 - mmdet - INFO - 
- Average Precision  (AP) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.697
- Average Precision  (AP) @[ IoU=0.50      | area=   all | maxDets=1000 ] = 0.767
- Average Precision  (AP) @[ IoU=0.75      | area=   all | maxDets=1000 ] = 0.752
- Average Precision  (AP) @[ IoU=0.50:0.95 | area= small | maxDets=1000 ] = 0.000
- Average Precision  (AP) @[ IoU=0.50:0.95 | area=medium | maxDets=1000 ] = 0.331
- Average Precision  (AP) @[ IoU=0.50:0.95 | area= large | maxDets=1000 ] = 0.827
- Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.744
- Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=300 ] = 0.744
- Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=1000 ] = 0.744
- Average Recall     (AR) @[ IoU=0.50:0.95 | area= small | maxDets=1000 ] = 0.000
- Average Recall     (AR) @[ IoU=0.50:0.95 | area=medium | maxDets=1000 ] = 0.500
- Average Recall     (AR) @[ IoU=0.50:0.95 | area= large | maxDets=1000 ] = 0.867
-
-2023-02-09 14:56:20,836 - mmdet - INFO - Exp name: config.py
-2023-02-09 14:56:20,836 - mmdet - INFO - Epoch(val) [19][13]	bbox_mAP: 0.6667, bbox_mAP_50: 0.7639, bbox_mAP_75: 0.7538, bbox_mAP_s: 0.0000, bbox_mAP_m: 0.3281, bbox_mAP_l: 0.7955, bbox_mAP_copypaste: 0.6667 0.7639 0.7538 0.0000 0.3281 0.7955, segm_mAP: 0.6968, segm_mAP_50: 0.7671, segm_mAP_75: 0.7520, segm_mAP_s: 0.0000, segm_mAP_m: 0.3307, segm_mAP_l: 0.8271, segm_mAP_copypaste: 0.6968 0.7671 0.7520 0.0000 0.3307 0.8271
-2023-02-09 14:56:29,450 - mmdet - INFO - Saving checkpoint at 20 epochs
-[                                                  ] 0/13, elapsed: 0s, ETA:[>>                                ] 1/13, 3.4 task/s, elapsed: 0s, ETA:     4s[>>>>>                             ] 2/13, 5.0 task/s, elapsed: 0s, ETA:     2s[>>>>>>>                           ] 3/13, 6.1 task/s, elapsed: 0s, ETA:     2s[>>>>>>>>>>                        ] 4/13, 6.2 task/s, elapsed: 1s, ETA:     1s[>>>>>>>>>>>>>                     ] 5/13, 6.8 task/s, elapsed: 1s, ETA:     1s[>>>>>>>>>>>>>>>                   ] 6/13, 7.7 task/s, elapsed: 1s, ETA:     1s[>>>>>>>>>>>>>>>>>>                ] 7/13, 8.6 task/s, elapsed: 1s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>              ] 8/13, 9.3 task/s, elapsed: 1s, ETA:     1s[>>>>>>>>>>>>>>>>>>>>>>           ] 9/13, 10.1 task/s, elapsed: 1s, ETA:     0s[>>>>>>>>>>>>>>>>>>>>>>>>        ] 10/13, 10.6 task/s, elapsed: 1s, ETA:     0s[>>>>>>>>>>>>>>>>>>>>>>>>>>>     ] 11/13, 11.2 task/s, elapsed: 1s, ETA:     0s[>>>>>>>>>>>>>>>>>>>>>>>>>>>>>   ] 12/13, 11.8 task/s, elapsed: 1s, ETA:     0s[>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>] 13/13, 12.2 task/s, elapsed: 1s, ETA:     0s2023-02-09 14:56:31,189 - mmdet - INFO - Evaluating bbox...
-Loading and preparing results...
-DONE (t=0.00s)
-creating index...
-index created!
-Running per image evaluation...
-Evaluate annotation type *bbox*
-DONE (t=0.01s).
-Accumulating evaluation results...
-DONE (t=0.01s).
-2023-02-09 14:56:31,205 - mmdet - INFO - 
- Average Precision  (AP) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.664
- Average Precision  (AP) @[ IoU=0.50      | area=   all | maxDets=1000 ] = 0.764
- Average Precision  (AP) @[ IoU=0.75      | area=   all | maxDets=1000 ] = 0.754
- Average Precision  (AP) @[ IoU=0.50:0.95 | area= small | maxDets=1000 ] = 0.000
- Average Precision  (AP) @[ IoU=0.50:0.95 | area=medium | maxDets=1000 ] = 0.328
- Average Precision  (AP) @[ IoU=0.50:0.95 | area= large | maxDets=1000 ] = 0.792
- Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.718
- Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=300 ] = 0.718
- Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=1000 ] = 0.718
- Average Recall     (AR) @[ IoU=0.50:0.95 | area= small | maxDets=1000 ] = 0.000
- Average Recall     (AR) @[ IoU=0.50:0.95 | area=medium | maxDets=1000 ] = 0.475
- Average Recall     (AR) @[ IoU=0.50:0.95 | area= large | maxDets=1000 ] = 0.839
-
-2023-02-09 14:56:31,205 - mmdet - INFO - Evaluating segm...
-/data/run01/scz0bdh/mmlab_hub/mmdetection-master/mmdet/datasets/coco.py:470: UserWarning: The key "bbox" is deleted for more accurate mask AP of small/medium/large instances since v2.12.0. This does not change the overall mAP calculation.
-  warnings.warn(
-Loading and preparing results...
-DONE (t=0.00s)
-creating index...
-index created!
-Running per image evaluation...
-Evaluate annotation type *segm*
-DONE (t=0.01s).
-Accumulating evaluation results...
-DONE (t=0.01s).
-2023-02-09 14:56:31,224 - mmdet - INFO - 
- Average Precision  (AP) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.697
- Average Precision  (AP) @[ IoU=0.50      | area=   all | maxDets=1000 ] = 0.767
- Average Precision  (AP) @[ IoU=0.75      | area=   all | maxDets=1000 ] = 0.752
- Average Precision  (AP) @[ IoU=0.50:0.95 | area= small | maxDets=1000 ] = 0.000
- Average Precision  (AP) @[ IoU=0.50:0.95 | area=medium | maxDets=1000 ] = 0.331
- Average Precision  (AP) @[ IoU=0.50:0.95 | area= large | maxDets=1000 ] = 0.827
- Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=100 ] = 0.744
- Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=300 ] = 0.744
- Average Recall     (AR) @[ IoU=0.50:0.95 | area=   all | maxDets=1000 ] = 0.744
- Average Recall     (AR) @[ IoU=0.50:0.95 | area= small | maxDets=1000 ] = 0.000
- Average Recall     (AR) @[ IoU=0.50:0.95 | area=medium | maxDets=1000 ] = 0.500
- Average Recall     (AR) @[ IoU=0.50:0.95 | area= large | maxDets=1000 ] = 0.867
-
-2023-02-09 14:56:31,225 - mmdet - INFO - Exp name: config.py
-2023-02-09 14:56:31,225 - mmdet - INFO - Epoch(val) [20][13]	bbox_mAP: 0.6643, bbox_mAP_50: 0.7639, bbox_mAP_75: 0.7538, bbox_mAP_s: 0.0000, bbox_mAP_m: 0.3281, bbox_mAP_l: 0.7921, bbox_mAP_copypaste: 0.6643 0.7639 0.7538 0.0000 0.3281 0.7921, segm_mAP: 0.6968, segm_mAP_50: 0.7671, segm_mAP_75: 0.7520, segm_mAP_s: 0.0000, segm_mAP_m: 0.3307, segm_mAP_l: 0.8271, segm_mAP_copypaste: 0.6968 0.7671 0.7520 0.0000 0.3307 0.8271
-2023-02-09 14:56:34,352 - mmdet - INFO - Exp name: config.py
-2023-02-09 14:56:34,352 - mmdet - INFO - Epoch(val) [20][7]	loss_rpn_cls_val: 0.0326, loss_rpn_bbox_val: 0.0111, loss_cls_val: 0.1558, acc_val: 95.9542, loss_bbox_val: 0.1193, loss_mask_val: 0.0952, loss_val: 0.4141

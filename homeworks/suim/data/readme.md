@@ -1,0 +1,1 @@
+Semantic Segmentation of Underwater Imagery (SUIM): https://www.kaggle.com/datasets/ashish2001/semantic-segmentation-of-underwater-imagery-suim

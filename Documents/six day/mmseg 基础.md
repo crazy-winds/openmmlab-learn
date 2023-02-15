@@ -99,5 +99,3 @@ deeplab 使用三个改进，再将UNet的解码器简化从而实现 deeplab v3
 ***Decode***：融合底层特征，产生分割结果
 
 <img src="imgs/9.png">
-
-
